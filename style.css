@@ -1,0 +1,19 @@
+html, body {
+   height: 100%;
+   margin: 0;
+   font-family: 'Roboto', sans-serif;
+}
+#map {
+   min-height: 100%;
+   width: 80vw;
+}
+.tracker 
+{
+   position: absolute;
+   top: 0;
+   right: 0;
+   height: 100%;
+   width: 20vw;
+   background: #b1b0b0;
+   text-align: center;
+}
