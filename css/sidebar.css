@@ -1,0 +1,59 @@
+.sidebar
+{
+	flex: 0 1 400px;
+	background-color: #fff;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	z-index: 99999;
+}
+
+.sidebar-cover
+{
+	max-width: 100%;
+	height: 250px;
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-position: center center;
+}
+
+.sidebar-section
+{
+	padding: 20px;
+}
+
+.sidebar-section + .sidebar-section
+{
+	border-top: #e6e6e6 1px solid;
+}
+
+.sidebar-title-section
+{
+	line-height: 1.3;
+	font-size: 1.5em;
+	font-weight: 400;
+}
+
+.sidebar-title-section small
+{
+	display: block;
+	font-size: 0.7em;
+	color: #5f5e5e;
+	font-weight: 200;
+}
+
+.sidebar-title-section a
+{
+	color: #5f5e5e
+}
+
+.sidebar-section .material-icons
+{
+	margin: 0 10px;
+	vertical-align: bottom;
+	color: #4e80f7;
+}
+
+.sidebar-section-list
+{
+	display: block;
+	margin-bottom: 6px;
+}

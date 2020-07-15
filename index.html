@@ -3,54 +3,37 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+   <title>Farplane Map</title>
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
    crossorigin=""/>
    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
    crossorigin=""></script>
-   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="style.css" />
+   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" href="./css/style.css" />
+   <link rel="stylesheet" href="./css/sidebar.css" />
 </head>
 <body>
-   <div id="map"></div>
-   <div class="tracker">
-      <h2>The Prototype</h2>
-      <div class="quest"><b>Detlas - 100EP</b> go to airship or something</div>
-      <div class="quest"><b>Seaskipper - 100EP</b> use it</div>
+   <div class="container">
+      <div class="sidebar">
+         <div class="sidebar-cover" style="background-image: url(https://cdn.pixabay.com/photo/2019/11/06/05/15/uav-4605203_960_720.jpg);"></div>
+         <div class="sidebar-section sidebar-title-section">
+            Use Seaskipper with 6 people 
+            <small><a href="https://wynncraft.gamepedia.com/V.S.S._Seaskipper">All Docks</a></small>
+         </div>
+         <div class="sidebar-section">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur dui sit amet quam elementum, eu hendrerit elit interdum. Ut in fermentum velit.
+         </div>
+         <div class="sidebar-section">
+            <div class="sidebar-section-list"><i class="material-icons">star</i> Prize: 100EP</div>
+            <div class="sidebar-section-list"><i class="material-icons">people</i> Completed by 47% of players</div>
+         </div>
+      </div>
+      <div class="map" id="map"></div>
    </div>
-   <script>
-      var w = 2669,
-         h = 1488,
-         url = 'wynnmap.jpeg';
-
-      var map = L.map('map', {
-      zoomDelta: 0.1,
-      zoomSnap: 0,
-      maxZoom: 3,
-      center: [1000,400],
-      zoom: 1,
-      crs: L.CRS.Simple,
-      });
-
-      var southWest = map.unproject([0, h], map.getMaxZoom()-1);
-      var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
-      var bounds = new L.LatLngBounds(southWest, northEast);
-
-      L.imageOverlay(url, bounds).addTo(map);
-
-      map.setMaxBounds(bounds.pad(0.3));
-
-      var icon = L.icon({
-         iconUrl: 'book.png',
-         iconSize: [32, 32]
-      })
-
-      L.marker([-213,188], {icon: icon}).addTo(map)
-       .bindPopup('<b>Detlas - 100EP</b><br>go to airship or something <br> <button>Send Evidence</button>')
-      L.marker([-180,320], {icon: icon}).addTo(map)
-       .bindPopup('<b>Seaskipper - 100EP</b><br>use it <br> <button>Send Evidence</button>')
-   </script>
+   <script src="./js/mapLoader.js"></script>
+   <script src="./js/main.js"></script>
 </body>
 </html>
