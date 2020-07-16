@@ -5,7 +5,7 @@ export function loadMap(w,h,url)
 		zoomSnap: 0,
 		maxZoom: 3,
 		center: [-300,340],
-		zoom: 0.3,
+		zoom: 0.7,
 		crs: L.CRS.Simple,
 	});
 
