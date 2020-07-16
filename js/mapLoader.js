@@ -1,4 +1,4 @@
-function loadMap(w,h,url)
+export function loadMap(w,h,url)
 {
 	var map = L.map('map', {
 		zoomDelta: 0.1,
