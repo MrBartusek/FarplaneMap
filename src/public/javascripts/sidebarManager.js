@@ -41,11 +41,14 @@ export default class SidebarManager
       <div class="sidebar-section sidebar-title-section">
          ${name}
          <small>${smallText}</small>
-      </div>
-      <div class="sidebar-section">${description}</div>
-      <div class="sidebar-section">
+		</div>
+		<div class="sidebar-section">
+		    action buttons
+		</div>
+		<div class="sidebar-section">${description}</div>
+		<div class="sidebar-section">
+		<div class="sidebar-section-list"><i class="material-icons">directions_walk</i> Excursion</div>
          <div class="sidebar-section-list"><i class="material-icons">star</i> Prize: ${prize}EP</div>
-         <div class="sidebar-section-list"><i class="material-icons">people</i> Completed by ${playersPercentage}% of players</div>
       </div>`;
 	}
    
