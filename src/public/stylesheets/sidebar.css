@@ -15,6 +15,22 @@
 	background-position: center center;
 }
 
+.sidebar-header
+{
+	background-color: #002377;
+	height: 250px;
+}
+
+.sidebar-header-logo
+{
+	display: block;
+	margin: 0 auto;
+	padding: 30px 0;
+	width: 50%;
+}
+
+/* #region Sections */
+
 .sidebar-section
 {
 	padding: 20px;
@@ -55,5 +71,24 @@
 .sidebar-section-list
 {
 	display: block;
-	margin-bottom: 6px;
+	padding-bottom: 6px;
+}
+
+/* #endregion */
+
+.sidebar-task:hover
+{
+	color: #4e80f7;
+	font-weight: 400px;
+	cursor: pointer;
+}
+
+.sidebar-task:hover::after
+{
+	font-family: 'Material Icons';
+	content: "navigate_next";
+	font-size: 24px;
+	vertical-align: bottom;
+	color: #cccccc;
+	float: right;
 }

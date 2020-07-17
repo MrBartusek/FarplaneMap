@@ -1,7 +1,14 @@
 import { loadMap } from './mapLoader.js';
 import SidebarManager from './sidebarManager.js';
 
-SidebarManager.renderList();
+SidebarManager.renderList(
+	[
+		{
+			'type': 'mission',
+			'name': 'test'
+		}
+	]
+);
 
 const icon = L.icon({
 	iconUrl: 'images/book.png',
@@ -43,6 +50,13 @@ L.marker([-345,151], {icon: icon})
 map.on('click', (e) =>
 { 
 	console.log('Clicked on empty spot at: ' + e.latlng);
-	SidebarManager.renderList();
+	SidebarManager.renderList(
+		[
+			{
+				'type': 'mission',
+				'name': 'test'
+			}
+		]
+	);
 	
 });
