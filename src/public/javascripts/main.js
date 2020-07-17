@@ -4,7 +4,7 @@ import SidebarManager from './sidebarManager.js';
 SidebarManager.renderList();
 
 const icon = L.icon({
-	iconUrl: 'book.png',
+	iconUrl: 'images/book.png',
 	iconSize: [32, 32]
 });
 
