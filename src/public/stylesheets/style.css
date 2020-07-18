@@ -9,7 +9,35 @@ html, body {
 	height: 100%;
 	display: flex;
 }
+
 .map {
 	flex: 1 1 auto;
 	background-color: #f2f2f2;
+}
+
+.mobile-notice
+{
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: #fff;
+	z-index: 999999;
+	text-align: center;
+}
+
+.mobile-notice .material-icons
+{
+	margin-top: 100px;
+	font-size: 5em;
+}
+
+@media only screen and (max-width: 1000px)
+{
+	.mobile-notice
+	{
+		display: block;
+	}
 }
