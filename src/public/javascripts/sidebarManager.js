@@ -56,15 +56,15 @@ export default class SidebarManager
 
 		const task = this.tasks[id];
 		document.getElementById('sidebar').innerHTML = `
-      <div class="sidebar-cover" style="background-image: url(${task.image});"></div>
+      <div class="sidebar-cover" style="background-image: url(${task.image || './images/default-cover.png'});"></div>
       <div class="sidebar-section sidebar-title-section">
-         ${task.name}
-         <small>${task.details}</small>
+         ${task.name || 'Unknown Quest'}
+         ${task.details ? `<small>${task.details}</small>` : ''}
 		</div>
 		<div class="sidebar-section">
 		    action buttons
 		</div>
-		<div class="sidebar-section">${task.description}</div>
+		<div class="sidebar-section">${task.description || 'Missing Description'}</div>
 		<div class="sidebar-section">
 		<div class="sidebar-section-list"><i class="material-icons">directions_walk</i> Excursion</div>
          <div class="sidebar-section-list"><i class="material-icons">star</i> Prize: ${task.experience}EP</div>
