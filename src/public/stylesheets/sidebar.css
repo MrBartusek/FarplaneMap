@@ -4,6 +4,9 @@
 	background-color: #fff;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 	z-index: 99999;
+	width: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 .sidebar-cover
@@ -71,7 +74,12 @@
 .sidebar-section-list
 {
 	display: block;
-	padding-bottom: 6px;
+	padding-bottom: 8px;
+}
+
+.sidebar-section-thin
+{
+	padding: 10px !important;
 }
 
 /* #endregion */
@@ -91,4 +99,9 @@
 	vertical-align: bottom;
 	color: #cccccc;
 	float: right;
+}
+
+.sidebar-task .material-icons
+{
+	color: #757575;
 }

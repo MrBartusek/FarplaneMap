@@ -1,25 +1,40 @@
 export default class SidebarManager
-{
-	static renderList(tasks)
+{	
+	constructor(data, mapManager)
 	{
+		this.tasks = data;
+		this.mapManager = mapManager;
+	}
+
+	renderTasksList()
+	{
+		if(SidebarManager.currentView == 'list') return;
+		SidebarManager.currentView = 'list';
+
 		let tasksList = '';
-		for(const task of tasks)
+		let i = 0;
+		for(const task of this.tasks)
 		{
-			let result = '<div class="sidebar-section-list sidebar-task">';
-			if(task.type == 'excursion')
+			let result = `<div onclick="renderTask(${i})" class="sidebar-section-list sidebar-task">`;
+			switch(task.type)
 			{
-				result += `<i class="material-icons">directions_walk</i> ${task.name}</div>`;
+			case 'Excursion':
+				result += '<i class="material-icons">directions_walk</i>';
+				break;
+			case 'Mission':
+				result += '<i class="material-icons">assignment</i>';
+				break;
+			case 'Dare':
+				result += '<i class="material-icons">local_fire_department</i>';
+				break;
+			default:
+				console.warn(`Unknown type for ${task.name} -> ${task.type}`);
+				result += '<i class="material-icons">star</i>';
+				break;
 			}
-			else if(task.type == 'mission')
-			{
-				result += `<i class="material-icons">assignment</i> ${task.name}</div>`;
-			}
-			else if(task.type == 'dare')
-			{
-				result += `<i class="material-icons">local_fire_department</i> ${task.name}</div>`;
-			}
-			result += '</div>';
+			result += `${task.name} </div>`;
 			tasksList += result;
+			i++;
 		}
 		document.getElementById('sidebar').innerHTML = `
 		<div class="sidebar-header">
@@ -28,32 +43,32 @@ export default class SidebarManager
 		<div class="sidebar-section">
 			social thingies
 		</div>
-		<div class="sidebar-section">
+		<div class="sidebar-section sidebar-section-thin" style="overflow-y: scroll;">
          ${tasksList}
       </div>
 		`;
 	}
 
-	static renderTask(image, name, smallText, description, prize, playersPercentage)
+	renderTask(id)
 	{
+		if(SidebarManager.currentView == `task-${id}`) return;
+		SidebarManager.currentView = `task-${id}`;
+
+		const task = this.tasks[id];
 		document.getElementById('sidebar').innerHTML = `
-      <div class="sidebar-cover" style="background-image: url(${image});"></div>
+      <div class="sidebar-cover" style="background-image: url(${task.image});"></div>
       <div class="sidebar-section sidebar-title-section">
-         ${name}
-         <small>${smallText}</small>
+         ${task.name}
+         <small>${task.details}</small>
 		</div>
 		<div class="sidebar-section">
 		    action buttons
 		</div>
-		<div class="sidebar-section">${description}</div>
+		<div class="sidebar-section">${task.description}</div>
 		<div class="sidebar-section">
 		<div class="sidebar-section-list"><i class="material-icons">directions_walk</i> Excursion</div>
-         <div class="sidebar-section-list"><i class="material-icons">star</i> Prize: ${prize}EP</div>
+         <div class="sidebar-section-list"><i class="material-icons">star</i> Prize: ${task.experience}EP</div>
       </div>`;
 	}
-   
-	static clear()
-	{
-		document.getElementById('sidebar').innerHTML = '';
-	}
 }
+

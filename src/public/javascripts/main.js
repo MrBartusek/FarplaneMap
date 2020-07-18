@@ -1,62 +1,40 @@
-import { loadMap } from './mapLoader.js';
+import MapManager from './mapManager.js';
 import SidebarManager from './sidebarManager.js';
+import DataLoader from './dataLoader.js';
 
-SidebarManager.renderList(
-	[
-		{
-			'type': 'mission',
-			'name': 'test'
-		}
-	]
-);
+const mapManager = new MapManager(2669,1488,'images/wynnmap.jpeg');
+mapManager.map.on('click', (e) => console.log('Clicked on empty spot at: ' + e.latlng));
 
-const icon = L.icon({
-	iconUrl: 'images/book.png',
-	iconSize: [32, 32]
-});
-
-const map = loadMap(2669,1488,'images/wynnmap.jpeg');
-
-L.marker([-180,318], {icon: icon})
-	.addTo(map)
-	.on('click', (e) => 
+DataLoader.loadTasks()
+	.then(data =>
 	{
-		map.panTo(e.latlng);
-		SidebarManager.renderTask(
-			'https://gamepedia.cursecdn.com/wynncraft_gamepedia_en/d/dc/HczgFHG.png?version=bb833f97adf60c4d8361d0cdbe9081cf',
-			'Use Seaskipper with 6 people', 
-			'<a href="https://wynncraft.gamepedia.com/V.S.S._Seaskipper">All Docks</a>', 
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur dui sit amet quam elementum, eu hendrerit elit interdum. Ut in fermentum velit.', 
-			'200', 
-			'42'
-		);
-	});
-
-L.marker([-345,151], {icon: icon})
-	.addTo(map)
-	.on('click', (e) => 
-	{
-		map.panTo(e.latlng);
-		SidebarManager.renderTask(
-			'https://gamepedia.cursecdn.com/wynncraft_gamepedia_en/3/31/Rymek.png?version=f095cd1f98a9236f0d038f068b918d51',
-			'Bandit Movement', 
-			'X1300 Z-1700', 
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur dui sit amet quam elementum, eu hendrerit elit interdum. Ut in fermentum velit.', 
-			'600', 
-			'12'
-		);
-	});
-
-map.on('click', (e) =>
-{ 
-	console.log('Clicked on empty spot at: ' + e.latlng);
-	SidebarManager.renderList(
-		[
+		const sidebarManager = new SidebarManager(data.tasks, mapManager);
+		sidebarManager.renderTasksList();
+		for (let i = 0; i < data.tasks.length; i++) {
+			const task = data.tasks[i];
+			if(task.coordinates)
 			{
-				'type': 'mission',
-				'name': 'test'
+				mapManager.addPinpoint(task.coordinates).on('click', () => renderTask(i));
 			}
-		]
-	);
-	
-});
+		}
+
+		mapManager.map.on('click', (e) => 
+		{
+			sidebarManager.renderTasksList();
+			mapManager.center();
+		});
+
+		window.renderTask = function(id)
+		{
+			sidebarManager.renderTask(id);
+			if(data.tasks[id].coordinates)
+			{
+				mapManager.setView(data.tasks[id].coordinates, true);
+			}
+			else
+			{
+				mapManager.center();
+			}
+		};
+	});
+
