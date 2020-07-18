@@ -30,7 +30,7 @@ app.get('/get-data', async (req, res) =>
 		doc.useApiKey(process.env.FARPLANE_KEY);
 		await doc.loadInfo(); 
 
-		let result = { requestedAt: +new Date};
+		let result = { requestedAt: String(+new Date)};
 	
 		const tasks = await doc.sheetsByIndex[2].getRows();
 		result.tasks = praseTasks(tasks);
@@ -71,5 +71,5 @@ function cacheAvailable()
 		return false;
 	}
 	const data = JSON.parse(fs.readFileSync(cacheFileDir ).toString());
-	return +new Date - data.requestedAt > 3600;
+	return +new Date - parseInt(data.requestedAt) < 3600000; // One hour in ms
 }
