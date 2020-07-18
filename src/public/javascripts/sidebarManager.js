@@ -15,7 +15,7 @@ export default class SidebarManager
 		let i = 0;
 		for(const task of this.tasks)
 		{
-			let result = `<div onclick="renderTask(${i})" class="sidebar-section-list sidebar-task">`;
+			let result = `<div onclick="renderTask(${i})" class="sidebar-section-big-list-item sidebar-task">`;
 			switch(task.type)
 			{
 			case 'Excursion':
@@ -43,7 +43,7 @@ export default class SidebarManager
 		<div class="sidebar-section">
 			social thingies
 		</div>
-		<div class="sidebar-section sidebar-section-thin" style="overflow-y: scroll;">
+		<div class="sidebar-section sidebar-section-big-list" style="overflow-y: scroll;">
          ${tasksList}
       </div>
 		`;
@@ -66,8 +66,8 @@ export default class SidebarManager
 		</div>
 		<div class="sidebar-section">${task.description || 'Missing Description'}</div>
 		<div class="sidebar-section">
-		<div class="sidebar-section-list"><i class="material-icons">directions_walk</i> Excursion</div>
-         <div class="sidebar-section-list"><i class="material-icons">star</i> Prize: ${task.experience}EP</div>
+		<div class="sidebar-section-list-item"><i class="material-icons">directions_walk</i> Excursion</div>
+         <div class="sidebar-section-list-item"><i class="material-icons">star</i> Prize: ${task.experience}EP</div>
       </div>`;
 	}
 }

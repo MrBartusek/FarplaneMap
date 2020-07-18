@@ -38,7 +38,6 @@
 {
 	padding: 20px;
 }
-
 .sidebar-section + .sidebar-section
 {
 	border-top: #e6e6e6 1px solid;
@@ -71,24 +70,30 @@
 	color: #4e80f7;
 }
 
-.sidebar-section-list
+.sidebar-section-list-item
 {
 	display: block;
 	padding-bottom: 8px;
 }
 
-.sidebar-section-thin
+.sidebar-section-big-list
 {
-	padding: 10px !important;
+	padding: 10px 0;
 }
+
+.sidebar-section-big-list-item
+{
+	padding: 6px 10px 6px 10px;
+}
+
 
 /* #endregion */
 
 .sidebar-task:hover
 {
 	color: #4e80f7;
-	font-weight: 400px;
 	cursor: pointer;
+	background-color: #f2f2f2;
 }
 
 .sidebar-task:hover::after
