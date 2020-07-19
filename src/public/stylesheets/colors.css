@@ -1,0 +1,48 @@
+:root 
+{
+	--color-excursion: rgb(39, 174, 96);
+	--color-mission: rgb(230, 126, 34);
+	--color-dare: rgb(155, 89, 182);
+	--color-excursion-background: rgba(39, 174, 96, 0.1);
+	--color-mission-background: rgba(230, 126, 34, 0.1);
+	--color-dare-background: rgba(155, 89, 182, 0.1);
+}
+
+.sidebar-task-excursion:hover, .sidebar-task-excursion:hover .material-icons, .icon-excursion
+{ 
+	color: var(--color-excursion);
+}
+.sidebar-task-excursion:hover
+{
+	background-color: var(--color-excursion-background);
+}
+.sidebar-subtitle-excursion
+{
+   background-color: var(--color-excursion);
+}
+
+.sidebar-task-mission:hover, .sidebar-task-mission:hover .material-icons, .icon-mission
+{ 
+	color: var(--color-mission);
+}
+.sidebar-task-mission:hover
+{
+	background-color: var(--color-mission-background);
+}
+.sidebar-subtitle-mission
+{
+   background-color: var(--color-mission);
+}
+
+.sidebar-task-dare:hover, .sidebar-task-dare:hover .material-icons, .icon-dare
+{ 
+	color: var(--color-dare);
+}
+.sidebar-task-dare:hover
+{
+	background-color: var(--color-dare-background);
+}
+.sidebar-subtitle-dare
+{
+   background-color: var(--color-dare);
+}

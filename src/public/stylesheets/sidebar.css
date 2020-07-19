@@ -34,9 +34,7 @@
 
 .sidebar-task:hover
 {
-	color: #4e80f7;
 	cursor: pointer;
-	background-color: #f2f2f2;
 }
 
 .sidebar-task:hover::after
@@ -49,44 +47,14 @@
 	float: right;
 }
 
-.sidebar-subtitle
-{
-	font-weight: 400;
-	color: #fff;
-	padding: 10px 20px;
-}
-
 .sidebar-task .material-icons
 {
 	color: #737373;
 }
 
-.sidebar-task:hover .icon-excursion, .icon-excursion
-{ 
-	color: #27ae60;
-}
-
-.sidebar-subtitle-excursion
+.sidebar-subtitle
 {
-	background-color: #27ae60;
-}
-
-.sidebar-task:hover .icon-mission, .icon-mission
-{ 
-	color: #e67e22;
-}
-
-.sidebar-subtitle-mission
-{
-	background-color: #e67e22;;
-}
-
-.sidebar-task:hover .icon-dare, .icon-dare
-{ 
-	color: #9b59b6;
-}
-
-.sidebar-subtitle .sidebar-subtitle-dare
-{
-	background-color: #9b59b6;;
+	font-weight: 400;
+	color: #fff;
+	padding: 10px 20px;
 }

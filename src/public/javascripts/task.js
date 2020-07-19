@@ -26,35 +26,8 @@ export default class Task
 		}
 	}
 
-	getIconColorClass()
+	lowerCaseType()
 	{
-		switch(this.type)
-		{
-		case 'Excursion':
-			return 'icon-excursion';
-		case 'Mission':
-			return 'icon-mission';
-		case 'Dare':
-			return 'icon-dare';
-		default:
-			console.warn(`Unknown type for ${task.name} -> ${task.type}`);
-			return '';
-		}
-	}
-
-	getSubtitleColorClass()
-	{
-		switch(this.type)
-		{
-		case 'Excursion':
-			return 'sidebar-subtitle-excursion';
-		case 'Mission':
-			return 'sidebar-subtitle-mission';
-		case 'Dare':
-			return 'sidebar-subtitle-dare';
-		default:
-			console.warn(`Unknown type for ${task.name} -> ${task.type}`);
-			return '';
-		}
+		return this.type.toLowerCase();
 	}
 }

@@ -19,8 +19,8 @@ export default class SidebarManager
 		{
 			const task = new Task(taskRaw);
 			tasksList += `
-			<div onclick="renderTask(${i})" class="sidebar-section-big-list-item sidebar-task">
-				<i class="material-icons ${task.getIconColorClass()}"> ${task.getIconName()}</i>
+			<div onclick="renderTask(${i})" class="sidebar-section-big-list-item sidebar-task sidebar-task-${task.lowerCaseType()}">
+				<i class="material-icons"> ${task.getIconName()}</i>
 				${task.name} 
 			</div>`;
 			i++;
@@ -46,7 +46,7 @@ export default class SidebarManager
 		const task = new Task(this.tasks[id]);
 		document.getElementById('sidebar').innerHTML = `
 		<div class="sidebar-cover-image" style="background-image: url(${task.image || './images/default-cover.png'});"></div>
-		<div class="sidebar-subtitle ${task.getSubtitleColorClass()}">
+		<div class="sidebar-subtitle sidebar-subtitle-${task.lowerCaseType()}">
 			${task.type}
 		</div>
       <div class="sidebar-section sidebar-title-section">
@@ -58,8 +58,8 @@ export default class SidebarManager
 		</div>
 		<div class="sidebar-section">${task.description || 'Missing Description'}</div>
 		<div class="sidebar-section">
-		<div class="sidebar-section-list-item"><i class="material-icons ${task.getIconColorClass()}">directions_walk</i> Excursion</div>
-         <div class="sidebar-section-list-item"><i class="material-icons ${task.getIconColorClass()}">star</i> Prize: ${task.experience}EP</div>
+		<div class="sidebar-section-list-item"><i class="material-icons icon-${task.lowerCaseType()}">directions_walk</i> Excursion</div>
+         <div class="sidebar-section-list-item"><i class="material-icons icon-${task.lowerCaseType()}">star</i> Prize: ${task.experience}EP</div>
       </div>`;
 	}
 
