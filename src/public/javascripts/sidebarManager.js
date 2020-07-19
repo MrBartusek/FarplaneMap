@@ -29,6 +29,9 @@ export default class SidebarManager
 		<div class="sidebar-brand">
 			<img src="/images/logo192.png" class="sidebar-brand-logo"></img>
 		</div>
+		<div class="sidebar-subtitle">
+			Interactive Excursion Map
+		</div>
 		<div class="sidebar-section sidebar-section-buttons">
 			<div class="sidebar-button" onclick="showRanking()">
 				<i class="material-icons">people</i>
@@ -66,7 +69,7 @@ export default class SidebarManager
 		</div>
 		<div class="sidebar-section">${task.description || 'Missing Description'}</div>
 		<div class="sidebar-section">
-		<div class="sidebar-section-list-item"><i class="material-icons icon-${task.lowerCaseType()}">directions_walk</i> Excursion</div>
+		<div class="sidebar-section-list-item"><i class="material-icons icon-${task.lowerCaseType()}">${task.getIconName()}</i>${task.type}</div>
          <div class="sidebar-section-list-item"><i class="material-icons icon-${task.lowerCaseType()}">star</i> Prize: ${task.experience}EP</div>
       </div>`;
 	}
