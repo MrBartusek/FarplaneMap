@@ -48,3 +48,9 @@
 {
 	padding: 8px 10px;
 }
+
+.sidebar-section-buttons
+{
+	display: flex;
+	justify-content: center;
+}

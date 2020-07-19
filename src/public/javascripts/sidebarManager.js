@@ -29,8 +29,19 @@ export default class SidebarManager
 		<div class="sidebar-brand">
 			<img src="/images/logo192.png" class="sidebar-brand-logo"></img>
 		</div>
-		<div class="sidebar-section">
-			social thingies
+		<div class="sidebar-section sidebar-section-buttons">
+			<div class="sidebar-button">
+				<i class="material-icons">people</i>
+				Ranking
+			</div>
+			<div class="sidebar-button">
+				<i class="material-icons">info</i>
+				Information
+			</div>
+			<a href="https://discord.gg/vUn6dVa" target='_blank' rel="noopener noreferrer" class="sidebar-button">
+				<i class="material-icons">chat</i>
+				Discord
+			</a>
 		</div>
 		<div class="sidebar-section sidebar-section-big-list" style="overflow-y: scroll;">
          ${tasksList}
@@ -52,9 +63,6 @@ export default class SidebarManager
       <div class="sidebar-section sidebar-title-section">
          ${task.name || 'Unknown Quest'}
          ${task.details ? `<small>${task.details}</small>` : ''}
-		</div>
-		<div class="sidebar-section">
-		    action buttons
 		</div>
 		<div class="sidebar-section">${task.description || 'Missing Description'}</div>
 		<div class="sidebar-section">
