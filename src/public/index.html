@@ -17,6 +17,7 @@
    <link rel="stylesheet" href="./stylesheets/sidebar_sections.css" />
    <link rel="stylesheet" href="./stylesheets/sidebar_button.css" />
    <link rel="stylesheet" href="./stylesheets/colors.css" />
+   <link rel="stylesheet" href="./stylesheets/dialog.css" />
 </head>
 <body>
    <div class="mobile-notice">
@@ -31,6 +32,25 @@
    <div class="container">
       <div id="sidebar" class="sidebar"></div>
       <div class="map" id="map"></div>
+   </div>
+   <div id="dialog" class="dialog-container" style="display: none;">
+      <div class="dialog-surface">
+         <div id="header" class="dialog-header">
+            Header
+         </div>
+         <div id="content" class="dialog-content">
+            <div class="dialog-ranking-item">
+               <span class="dialog-ranking-place">1</span>
+               <span class="dialog-ranking-name">test</span>
+               <span class="dialog-ranking-experience">100</span>
+            </div>
+            <div class="dialog-ranking-item">
+               <span class="dialog-ranking-place">1</span>
+               <span class="dialog-ranking-name">test</span>
+               <span class="dialog-ranking-experience">100</span>
+            </div>
+         </div>
+      </div>
    </div>
    <script type="module" src="./javascripts/main.js"></script>
 </body>

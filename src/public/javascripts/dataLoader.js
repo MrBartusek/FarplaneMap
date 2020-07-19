@@ -1,6 +1,6 @@
 export default class DataLoader
 {
-	static loadTasks()
+	static loadData()
 	{
 		console.log('Loading tasks from /get-data...');
 		return fetch('/get-data')

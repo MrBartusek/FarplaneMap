@@ -30,11 +30,11 @@ export default class SidebarManager
 			<img src="/images/logo192.png" class="sidebar-brand-logo"></img>
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
-			<div class="sidebar-button">
+			<div class="sidebar-button" onclick="showRanking()">
 				<i class="material-icons">people</i>
 				Ranking
 			</div>
-			<div class="sidebar-button">
+			<div class="sidebar-button" onclick="showInformation()">
 				<i class="material-icons">info</i>
 				Information
 			</div>

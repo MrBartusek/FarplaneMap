@@ -1,0 +1,84 @@
+.dialog-container
+{
+   position: absolute;
+   z-index: 999999999;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background-color: rgba(0,0,0,0.4);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.dialog-surface
+{
+   min-width: 400px;
+   max-width: 45%;
+   min-height: 300px;
+   max-height: 70%;
+   background-color: #fff;
+   border-radius: 10px 10px 6px 6px;
+   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0,0,0,.12);
+   display: flex;
+   flex-direction: column;
+}
+
+.dialog-header
+{
+   border-radius: 6px 6px 0 0;
+   padding: 20px;
+   background-color: #4e80f7;
+   color: #fff;
+   font-weight: 400;
+   font-size: 1.5em;
+}
+
+.dialog-header .material-icons
+{
+   padding: 2.5px;
+   float: right;
+   cursor: pointer;
+}
+.dialog-header .material-icons:hover
+{
+   color: #ccc;
+}
+
+.dialog-content
+{
+   flex: 1;
+   padding: 15px;
+   overflow-y: auto;
+}
+
+.dialog-ranking-item
+{
+   padding: 8px;
+   display: flex;
+   flex-direction: row;
+   min-width: 500px;
+}
+
+.dialog-ranking-item + .dialog-ranking-item
+{
+   border-top: #e6e6e6 1px solid;
+}
+
+.dialog-ranking-place
+{
+   flex: 0 0 40px;
+   font-weight: bold;
+}
+
+.dialog-ranking-name
+{
+   flex: 1 1 auto;
+}
+
+.dialog-ranking-experience
+{
+   flex: 0 0 auto;
+   text-align: right;
+}
