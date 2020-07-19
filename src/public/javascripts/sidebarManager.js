@@ -1,3 +1,5 @@
+import Task from './task.js';
+
 export default class SidebarManager
 {	
 	constructor(data, mapManager)
@@ -13,32 +15,19 @@ export default class SidebarManager
 
 		let tasksList = '';
 		let i = 0;
-		for(const task of this.tasks)
+		for(const taskRaw of this.tasks)
 		{
-			let result = `<div onclick="renderTask(${i})" class="sidebar-section-big-list-item sidebar-task">`;
-			switch(task.type)
-			{
-			case 'Excursion':
-				result += '<i class="material-icons">directions_walk</i>';
-				break;
-			case 'Mission':
-				result += '<i class="material-icons">assignment</i>';
-				break;
-			case 'Dare':
-				result += '<i class="material-icons">local_fire_department</i>';
-				break;
-			default:
-				console.warn(`Unknown type for ${task.name} -> ${task.type}`);
-				result += '<i class="material-icons">star</i>';
-				break;
-			}
-			result += `${task.name} </div>`;
-			tasksList += result;
+			const task = new Task(taskRaw);
+			tasksList += `
+			<div onclick="renderTask(${i})" class="sidebar-section-big-list-item sidebar-task">
+				<i class="material-icons ${task.getIconColorClass()}"> ${task.getIconName()}</i>
+				${task.name} 
+			</div>`;
 			i++;
 		}
 		document.getElementById('sidebar').innerHTML = `
-		<div class="sidebar-header">
-			<img src="/images/logo192.png" class="sidebar-header-logo"></img>
+		<div class="sidebar-brand">
+			<img src="/images/logo192.png" class="sidebar-brand-logo"></img>
 		</div>
 		<div class="sidebar-section">
 			social thingies
@@ -54,9 +43,12 @@ export default class SidebarManager
 		if(SidebarManager.currentView == `task-${id}`) return;
 		SidebarManager.currentView = `task-${id}`;
 
-		const task = this.tasks[id];
+		const task = new Task(this.tasks[id]);
 		document.getElementById('sidebar').innerHTML = `
-      <div class="sidebar-cover" style="background-image: url(${task.image || './images/default-cover.png'});"></div>
+		<div class="sidebar-cover-image" style="background-image: url(${task.image || './images/default-cover.png'});"></div>
+		<div class="sidebar-subtitle ${task.getSubtitleColorClass()}">
+			${task.type}
+		</div>
       <div class="sidebar-section sidebar-title-section">
          ${task.name || 'Unknown Quest'}
          ${task.details ? `<small>${task.details}</small>` : ''}
@@ -66,9 +58,12 @@ export default class SidebarManager
 		</div>
 		<div class="sidebar-section">${task.description || 'Missing Description'}</div>
 		<div class="sidebar-section">
-		<div class="sidebar-section-list-item"><i class="material-icons">directions_walk</i> Excursion</div>
-         <div class="sidebar-section-list-item"><i class="material-icons">star</i> Prize: ${task.experience}EP</div>
+		<div class="sidebar-section-list-item"><i class="material-icons ${task.getIconColorClass()}">directions_walk</i> Excursion</div>
+         <div class="sidebar-section-list-item"><i class="material-icons ${task.getIconColorClass()}">star</i> Prize: ${task.experience}EP</div>
       </div>`;
 	}
+
+
+	
 }
 
