@@ -64,11 +64,13 @@ function praseTasks(rows)
 		{
 			lastType = task.Type;
 		}
+		
 		tasks.push({ 
 			name: task.Title,
 			description: task.Description,
 			details: task.Details,
 			experience: task['Experience Points'],
+			repeatable: task['Repeatable'],
 			type: lastType.slice(0,-1), 
 			coordinates: task.Coordinates && task.Coordinates.split(' '), 
 			image: task.Image, 

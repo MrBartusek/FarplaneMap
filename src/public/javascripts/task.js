@@ -8,6 +8,7 @@ export default class Task
 		this.experience = data.experience;
 		this.type = data.type;
 		this.coordinates = data.coordinates;
+		this.repeatable = data.repeatable;
 	}
 
 	getIconName()
@@ -23,6 +24,21 @@ export default class Task
 		default:
 			console.warn(`Unknown type for ${task.name} -> ${task.type}`);
 			return 'star';
+		}
+	}
+
+	humanizeRepeatability()
+	{
+		switch(this.repeatable)
+		{
+		case 'no':
+			return ['close', 'Not Repeatable'];
+		case 'yes':
+			return ['cached', 'Can be repeated'];
+		case 'event':
+			return ['star', 'Can be repeated during events'];
+		default:
+			return ['report_problem', 'Unknown Repeatability'];
 		}
 	}
 

@@ -69,12 +69,19 @@ export default class SidebarManager
 		</div>
 		<div class="sidebar-section">${task.description || 'Missing Description'}</div>
 		<div class="sidebar-section">
-		<div class="sidebar-section-list-item"><i class="material-icons icon-${task.lowerCaseType()}">${task.getIconName()}</i>${task.type}</div>
-         <div class="sidebar-section-list-item"><i class="material-icons icon-${task.lowerCaseType()}">star</i> Prize: ${task.experience}EP</div>
+			<div class="sidebar-section-list-item">
+				<i class="material-icons icon-${task.lowerCaseType()}">${task.getIconName()}</i>
+				${task.type}
+			</div>
+			<div class="sidebar-section-list-item">
+				<i class="material-icons icon-${task.lowerCaseType()}">${task.humanizeRepeatability()[0]}</i>
+				${task.humanizeRepeatability()[1]}
+			</div>
+			<div class="sidebar-section-list-item">
+				<i class="material-icons icon-${task.lowerCaseType()}">star</i>
+				Award: ${task.experience ? task.experience + 'EP': 'Unknown'}
+			</div>
       </div>`;
 	}
-
-
-	
 }
 
