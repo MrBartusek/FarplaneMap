@@ -22,7 +22,7 @@ app.get('/get-data', async (req, res) =>
 {
 	if(cacheAvailable())
 	{
-		res.status(200).json({ cache: true, ...JSON.parse(fs.readFileSync(cacheFileDir))});
+		res.status(304).json({ cache: true, ...JSON.parse(fs.readFileSync(cacheFileDir))});
 	}
 	else
 	{
@@ -46,6 +46,10 @@ app.get('/get-data', async (req, res) =>
 
 function cacheAvailable()
 {
+	if(process.argv.includes('--no-cache'))
+	{
+		return false;
+	}
 	if(!fs.existsSync(cacheFileDir))
 	{
 		return false;
