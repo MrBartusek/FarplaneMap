@@ -42,9 +42,9 @@ DataLoader.loadData()
 		{
 			dialogManager.showRanking(data.players);
 		};
-		window.showInformation = function()
+		window.showHelp = function()
 		{
-			dialogManager.showInformation();
+			dialogManager.showHelp();
 		};
 		window.hideDialog = function()
 		{

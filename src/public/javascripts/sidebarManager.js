@@ -33,13 +33,17 @@ export default class SidebarManager
 			Interactive Excursion Map
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
+			<div class="sidebar-button">
+				<i class="material-icons">person</i>
+				Select Player
+			</div>
 			<div class="sidebar-button" onclick="showRanking()">
 				<i class="material-icons">people</i>
 				Ranking
 			</div>
-			<div class="sidebar-button" onclick="showInformation()">
+			<div class="sidebar-button" onclick="showHelp()">
 				<i class="material-icons">info</i>
-				Information
+				Help
 			</div>
 			<a href="https://discord.gg/vUn6dVa" target='_blank' rel="noopener noreferrer" class="sidebar-button">
 				<i class="material-icons">chat</i>
@@ -62,6 +66,20 @@ export default class SidebarManager
 		<div class="sidebar-cover-image" style="background-image: url(${task.image || './images/default-cover.png'});"></div>
 		<div class="sidebar-subtitle sidebar-subtitle-${task.lowerCaseType()}">
 			${task.type}
+		</div>
+		<div class="sidebar-section sidebar-section-buttons">
+			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}">
+				<i class="material-icons">done</i>
+				Submit
+			</div>
+			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" onclick="showHelp()">
+				<i class="material-icons">info</i>
+				Help
+			</div>
+			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}">
+				<i class="material-icons">share</i>
+				Share
+			</div>
 		</div>
       <div class="sidebar-section sidebar-title-section">
          ${task.name || 'Unknown Quest'}

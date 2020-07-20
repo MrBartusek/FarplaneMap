@@ -6,43 +6,63 @@
 	--color-excursion-background: rgba(39, 174, 96, 0.1);
 	--color-mission-background: rgba(230, 126, 34, 0.1);
 	--color-dare-background: rgba(155, 89, 182, 0.1);
+	--color-excursion-active: rgba(39, 174, 96, 0.3);
+	--color-mission-active: rgba(230, 126, 34, 0.3);
+	--color-dare-active: rgba(155, 89, 182, 0.3);
 }
 
 .sidebar-task-excursion:hover, .sidebar-task-excursion:hover .material-icons, .icon-excursion
 { 
 	color: var(--color-excursion);
 }
-.sidebar-task-excursion:hover
-{
-	background-color: var(--color-excursion-background);
-}
 .sidebar-subtitle-excursion
 {
    background-color: var(--color-excursion);
+}
+.sidebar-task-excursion:hover
+{
+	background-color: var(--color-excursion-background);
 }
 
 .sidebar-task-mission:hover, .sidebar-task-mission:hover .material-icons, .icon-mission
 { 
 	color: var(--color-mission);
 }
-.sidebar-task-mission:hover
-{
-	background-color: var(--color-mission-background);
-}
 .sidebar-subtitle-mission
 {
    background-color: var(--color-mission);
+}
+.sidebar-task-mission:hover
+{
+	background-color: var(--color-mission-background);
 }
 
 .sidebar-task-dare:hover, .sidebar-task-dare:hover .material-icons, .icon-dare
 { 
 	color: var(--color-dare);
 }
-.sidebar-task-dare:hover
-{
-	background-color: var(--color-dare-background);
-}
 .sidebar-subtitle-dare
 {
    background-color: var(--color-dare);
 }
+.sidebar-task-dare:hover
+{
+	background-color: var(--color-dare-background);
+}
+
+/* Sidebar Buttons */
+
+.sidebar-button-excursion { color: var(--color-excursion); }
+.sidebar-button-excursion .material-icons { border: var(--color-excursion) solid 1.5px; }
+.sidebar-button-excursion .material-icons:hover { background-color: var(--color-excursion-background); }
+.sidebar-button-excursion .material-icons:active { background-color: var(--color-excursion-active); }
+
+.sidebar-button-mission { color: var(--color-mission); }
+.sidebar-button-mission .material-icons { border: var(--color-mission) solid 1.5px; }
+.sidebar-button-mission .material-icons:hover { background-color: var(--color-mission-background); }
+.sidebar-button-mission .material-icons:active { background-color: var(--color-mission-active); }
+
+.sidebar-button-dare { color: var(--color-dare); }
+.sidebar-button-dare .material-icons { border: var(--color-dare) solid 1.5px; }
+.sidebar-button-dare .material-icons:hover { background-color: var(--color-dare-background); }
+.sidebar-button-dare .material-icons:active { background-color: var(--color-dare-active); }
