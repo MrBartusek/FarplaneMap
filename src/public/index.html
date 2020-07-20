@@ -12,6 +12,7 @@
    crossorigin=""></script>
    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" href="./stylesheets/loading.css" />
    <link rel="stylesheet" href="./stylesheets/style.css" />
    <link rel="stylesheet" href="./stylesheets/sidebar.css" />
    <link rel="stylesheet" href="./stylesheets/sidebar_sections.css" />
@@ -20,6 +21,25 @@
    <link rel="stylesheet" href="./stylesheets/dialog.css" />
 </head>
 <body>
+
+   <div class="container">
+      <div id="sidebar" class="sidebar">
+         <svg class="loading-spinner" width="45px" height="45px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="loading-circle" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>
+      </div>
+      <div class="map" id="map"></div>
+   </div>
+
+   <div id="dialog" class="dialog-container" style="display: none;">
+      <div class="dialog-surface">
+         <div id="header" class="dialog-header">
+            Header
+         </div>
+         <div id="content" class="dialog-content">
+            content
+         </div>
+      </div>
+   </div>
+
    <div class="mobile-notice">
       <span class="material-icons">app_blocking</span>
       <h2>
@@ -29,29 +49,7 @@
          We currently don't support mobile devices, please use device with wider screen!
       </p>
    </div>
-   <div class="container">
-      <div id="sidebar" class="sidebar"></div>
-      <div class="map" id="map"></div>
-   </div>
-   <div id="dialog" class="dialog-container" style="display: none;">
-      <div class="dialog-surface">
-         <div id="header" class="dialog-header">
-            Header
-         </div>
-         <div id="content" class="dialog-content">
-            <div class="dialog-ranking-item">
-               <span class="dialog-ranking-place">1</span>
-               <span class="dialog-ranking-name">test</span>
-               <span class="dialog-ranking-experience">100</span>
-            </div>
-            <div class="dialog-ranking-item">
-               <span class="dialog-ranking-place">1</span>
-               <span class="dialog-ranking-name">test</span>
-               <span class="dialog-ranking-experience">100</span>
-            </div>
-         </div>
-      </div>
-   </div>
+
    <script type="module" src="./javascripts/main.js"></script>
 </body>
 </html>
