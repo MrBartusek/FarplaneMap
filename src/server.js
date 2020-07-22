@@ -7,15 +7,15 @@ const fs = require('fs');
 
 const cacheFileDir = __dirname + '\\cache.json';
 
+if(!process.env.FARPLANE_KEY)
+{
+	console.log('Fatal: FARPLANE_KEY not provided');
+	process.exit(5);
+}
+
 const app = express();
 app.use(logger('dev'));
 app.use('/', express.static(path.join(__dirname, 'public')));
-if(!process.env.FARPLANE_KEY)
-{
-	// eslint-disable-next-line
-	console.log('Fatal: FARPLANE_KEY not provided')
-	process.exit(5);
-}
 app.listen(port, () => console.log(`Farplane map listening at port: ${port}`));
 
 app.get('/get-data', async (req, res) => 
@@ -39,7 +39,6 @@ app.get('/get-data', async (req, res) =>
 		result.players = prasePlayers(leaderboard, playerData, result.tasks);
 
 		fs.writeFileSync(cacheFileDir, JSON.stringify(result));
-
 		res.status(200).json({ cache: false, ...result});
 	}
 });
