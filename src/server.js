@@ -95,7 +95,7 @@ function prasePlayers(leaderboard, playersData, parsedTasks)
 		const leaderboardPlayerId = leaderboard.findIndex((p) => p.name === playerData.name);
 		if(leaderboardPlayerId === undefined)
 		{
-			console.error(`Found player ${leaderboardPlayerId.name} in "Leaderboard" but not in "Player Data"`);
+			console.log(`Warning: Found player ${leaderboardPlayerId.name} in "Leaderboard" but not in "Player Data"`);
 			continue;
 		}
 
@@ -107,13 +107,13 @@ function prasePlayers(leaderboard, playersData, parsedTasks)
 			if(taskExperience && taskExperience.length > 1)
 			{
 				const taskId = parsedTasks.findIndex((t) => t.name == taskNames[i]);
-				if(taskId != undefined)
+				if(taskId != -1)
 				{
 					result[leaderboardPlayerId].completedTasks.push(taskId);
 				}
 				else
 				{
-					console.error(`Found task ${taskNames[i]} in "Player Data" but not in "Tasks"`);
+					console.log(`Warning: Found task ${taskNames[i]} in "Player Data" but not in "Tasks"`);
 				}
 			}
 		}
