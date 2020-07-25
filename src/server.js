@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000;
 const fs = require('fs');
 const DataFetcher = require('./dataFetcher');
 
-const cacheFileDir = __dirname + '\\cache.json';
+const cacheFileDir = __dirname + '/cache.json';
 
 if(!process.env.FARPLANE_KEY)
 {
@@ -47,11 +47,11 @@ app.get('/get-data', async (req, res) =>
 });
 
 app.get('/501', function (req, res) {
-	res.status(501).sendFile(__dirname + '\\public\\501.html');
+	res.status(501).sendFile(__dirname + '/public/501.html');
 });
 
 app.use(function (req, res) {
-	res.status(404).sendFile(__dirname + '\\public\\404.html');
+	res.status(404).sendFile(__dirname + '/public/404.html');
 });
 
 function cacheAvailable()
