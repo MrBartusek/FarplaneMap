@@ -7,7 +7,6 @@ class DataFetcher
 	async getData()
 	{
 		let result = { requestedAt: String(+new Date)};
-
 		const doc = new GoogleSpreadsheet('1hyzbaOZVq0dD_AAYnY1q24_mF52u-nYM4BteGAtqZcc');
 		doc.useApiKey(process.env.FARPLANE_KEY);
 		await doc.loadInfo(); 

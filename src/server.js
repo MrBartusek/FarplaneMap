@@ -26,9 +26,23 @@ app.get('/get-data', async (req, res) =>
 	}
 	else
 	{
-		const result = await new DataFetcher().getData();
-		fs.writeFileSync(cacheFileDir, JSON.stringify(result));
-		res.status(200).json({ cache: false, ...result});
+		try 
+		{
+			const result = await new DataFetcher().getData();
+			fs.writeFileSync(cacheFileDir, JSON.stringify(result));
+			res.status(200).json({ cache: false, ...result});
+		} 
+		catch (error) 
+		{
+			console.log('Failed to get data: ' + error.stack);
+			res.status(500).json(
+				{
+					error: 'true',
+					message: 'Internal Server Error',
+					code: 500,
+				}
+			);
+		}
 	}
 });
 

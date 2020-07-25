@@ -50,5 +50,10 @@ DataLoader.loadData()
 		{
 			dialogManager.hide();
 		};
+	})
+	.catch((error) => 
+	{
+		console.log(`FAILED TO LOAD DATA\r\nCODE: ${error.code}\r\nMESSAGE: ${error.message}`);
+		document.getElementById('sidebar').innerHTML = '<i class="material-icons error-icon">warning</i>';
 	});
 
