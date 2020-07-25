@@ -15,7 +15,12 @@ class Task
    
 	addStatistic(completedPercentage)
 	{
-		this.completedPercentage = completedPercentage;
+		this.completedPercentage = Math.round(completedPercentage * 100) / 100;
+	}
+
+	setPopular()
+	{
+		this.popular = true;
 	}
 }
 

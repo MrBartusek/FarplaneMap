@@ -37,7 +37,7 @@ app.get('/get-data', async (req, res) =>
 			console.log('Failed to get data: ' + error.stack);
 			res.status(500).json(
 				{
-					error: 'true',
+					error: true,
 					message: 'Internal Server Error',
 					code: 500,
 				}

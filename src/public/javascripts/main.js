@@ -13,11 +13,10 @@ DataLoader.loadData()
 		const dialogManager = new DialogManager();
 
 		sidebarManager.renderTasksList();
-		for (let i = 0; i < data.tasks.length; i++) {
-			const task = data.tasks[i];
+		for(const task of data.tasks) {
 			if(task.coordinates)
 			{
-				mapManager.addPinpoint(task.coordinates).on('click', () => renderTask(i));
+				mapManager.addPinpoint(task.coordinates).on('click', () => renderTask(task.id));
 			}
 		}
 
@@ -40,7 +39,7 @@ DataLoader.loadData()
 		};
 		window.showRanking = function()
 		{
-			dialogManager.showRanking(data.players);
+			dialogManager.showRanking([...data.players].sort());
 		};
 		window.showHelp = function()
 		{

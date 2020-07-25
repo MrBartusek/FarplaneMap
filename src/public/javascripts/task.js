@@ -2,6 +2,7 @@ export default class Task
 {
 	constructor(data)
 	{
+		this.id = data.id;
 		this.name = data.name;
 		this.description = data.description;
 		this.details = data.details;
@@ -9,6 +10,8 @@ export default class Task
 		this.type = data.type;
 		this.coordinates = data.coordinates;
 		this.repeatable = data.repeatable;
+		this.popular = data.popular;
+		this.completedPercentage = data.completedPercentage;
 	}
 
 	getIconName()
@@ -32,11 +35,11 @@ export default class Task
 		switch(this.repeatable)
 		{
 		case 'no':
-			return ['close', 'Not Repeatable'];
+			return ['sync_disabled', 'Not Repeatable'];
 		case 'yes':
 			return ['cached', 'Can be repeated'];
 		case 'event':
-			return ['star', 'Can be repeated during events'];
+			return ['event', 'Can be repeated during events'];
 		default:
 			return ['report_problem', 'Unknown Repeatability'];
 		}

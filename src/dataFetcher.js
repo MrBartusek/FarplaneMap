@@ -17,6 +17,7 @@ class DataFetcher
 		result.tasks = this.praseTasks(tasks);
 		result.players = this.praseLeaderboard(leaderboard);
 		result.players = this.addTaskToPlayers(result.players, playerData, result.tasks);
+		result.tasks = this.addStatisticsToTask(result.tasks, result.players);
       
 		return result;
 	}
@@ -87,6 +88,24 @@ class DataFetcher
 			}
 		}
 		return result;
+	}
+
+	addStatisticsToTask(tasks, players)
+	{
+		const result = tasks;
+		for (let i = 0; i < tasks.length; i++) 
+		{
+			const completedCount = players.filter((x) => x.completedTasks.includes(tasks[i].id)).length;
+			result[i].addStatistic(completedCount / tasks.length * 100);
+		}
+		const popularTasks = [...result].sort((a, b) => { return b.completedPercentage - a.completedPercentage; }).slice(0, 5);
+		for(const popularTask of popularTasks)
+		{
+			result[popularTask.id].setPopular();
+		}
+		
+		return result;
+
 	}
 }
 

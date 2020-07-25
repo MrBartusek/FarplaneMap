@@ -15,11 +15,11 @@ export default class SidebarManager
 
 		let tasksList = '';
 		let i = 0;
-		for(const taskRaw of this.tasks)
+		for(const taskRaw of [...this.tasks].sort((a,b) => b.completedPercentage - a.completedPercentage))
 		{
 			const task = new Task(taskRaw);
 			tasksList += `
-			<div onclick="renderTask(${i})" class="sidebar-section-big-list-item sidebar-task sidebar-task-${task.lowerCaseType()}">
+			<div onclick="renderTask(${task.id})" class="sidebar-section-big-list-item sidebar-task sidebar-task-${task.lowerCaseType()}">
 				<i class="material-icons"> ${task.getIconName()}</i>
 				${task.name} 
 			</div>`;
@@ -60,7 +60,6 @@ export default class SidebarManager
 	{
 		if(SidebarManager.currentView == `task-${id}`) return;
 		SidebarManager.currentView = `task-${id}`;
-
 		const task = new Task(this.tasks[id]);
 		document.getElementById('sidebar').innerHTML = `
 		<div class="sidebar-cover-image" style="background-image: url(${task.image || './images/default-cover.png'});"></div>
@@ -95,6 +94,14 @@ export default class SidebarManager
 				<i class="material-icons icon-${task.lowerCaseType()}">${task.humanizeRepeatability()[0]}</i>
 				${task.humanizeRepeatability()[1]}
 			</div>
+			<div class="sidebar-section-list-item">
+				<i class="material-icons icon-${task.lowerCaseType()}">people</i>
+				Completed by ${Math.round(task.completedPercentage)}% of players
+			</div>
+			${task.popular ? `<div class="sidebar-section-list-item">
+				<i class="material-icons icon-${task.lowerCaseType()}">trending_up</i>
+				This task is popular
+				</div>` : ''}
 			<div class="sidebar-section-list-item">
 				<i class="material-icons icon-${task.lowerCaseType()}">star</i>
 				Award: ${task.experience ? task.experience + 'EP': 'Unknown'}
