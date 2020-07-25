@@ -1,6 +1,6 @@
 export default class DialogManager
 {
-	showDialog(header, content, buttons, color = 'inherit')
+	showDialog(header, content, color)
 	{
 		document.getElementById('dialog').style.display = 'flex';
 		document.getElementById('header').innerHTML = header + '<i class="material-icons" onclick="hideDialog()">close</i>';
