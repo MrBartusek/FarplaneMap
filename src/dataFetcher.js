@@ -1,20 +1,23 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
+const Task = require('./task');
+const Player = require('./player');
 
 class DataFetcher
 {
 	async getData()
 	{
+		let result = { requestedAt: String(+new Date)};
+
 		const doc = new GoogleSpreadsheet('1hyzbaOZVq0dD_AAYnY1q24_mF52u-nYM4BteGAtqZcc');
 		doc.useApiKey(process.env.FARPLANE_KEY);
 		await doc.loadInfo(); 
-
-		let result = { requestedAt: String(+new Date)};
 	
 		const leaderboard = await doc.sheetsByIndex[0].getRows({offset: 2});
 		const playerData = await doc.sheetsByIndex[1].getRows();
 		const tasks = await doc.sheetsByIndex[2].getRows();
 		result.tasks = this.praseTasks(tasks);
-		result.players = this.prasePlayers(leaderboard, playerData, result.tasks);
+		result.players = this.praseLeaderboard(leaderboard);
+		result.players = this.addTaskToPlayers(result.players, playerData, result.tasks);
       
 		return result;
 	}
@@ -23,94 +26,68 @@ class DataFetcher
 	{
 		const tasks = [];
 		let lastType = 'Unknown';
-		for(const task of rows)
+		for (let i = 0; i < rows.length; i++) 
 		{
+			const task = rows[i];
 			if(task.Type != '' && lastType != task.Type)
 			{
 				lastType = task.Type;
 			}
-		
-			tasks.push({ 
-				name: task.Title,
-				description: task.Description,
-				details: task.Details,
-				experience: task['Experience Points'],
-				repeatable: task['Repeatable'],
-				type: lastType.slice(0,-1), 
-				coordinates: task.Coordinates && task.Coordinates.split(' '), 
-				image: task.Image, 
-			});
+
+			tasks.push(new Task(
+				i,
+				task.Title,
+				task.Details,
+				task.Description,
+				task['Experience Points'],
+				task.Repeatable,
+				lastType.slice(0,-1),
+				task.Coordinates && task.Coordinates.split(' '),
+				task.Image
+			));
 		}
 		return tasks;
 	}
 
-	prasePlayers(leaderboard, playersData, parsedTasks)
+	praseLeaderboard(leaderboard)
 	{
-		const result = this.praseLeaderboard(leaderboard);
-
-		const taskNames =  playersData[0]._rawData;
-		const validTasksCount = playersData[0]._sheet.headerValues.findIndex((x) => x.includes('Old-'));
-
-		for (let i = 3; i < playersData.length; i++) 
+		let result = [];
+		for(const player of leaderboard)
 		{
-			const playerData = playersData[i];
-			const leaderboardPlayerId = leaderboard.findIndex((p) => p.name === playerData.name);
-			if(leaderboardPlayerId === undefined)
-			{
-				console.log(`Warning: Found player ${leaderboardPlayerId.name} in "Leaderboard" but not in "Player Data"`);
-				continue;
-			}
-
-			result[leaderboardPlayerId].completedTasks = [];
-		
-			for (let i = 2; i < validTasksCount; i++) 
-			{
-				const taskExperience = playerData._rawData[i];
-				if(taskExperience && taskExperience.length > 1)
-				{
-					const taskId = parsedTasks.findIndex((t) => t.name == taskNames[i]);
-					if(taskId != -1)
-					{
-						result[leaderboardPlayerId].completedTasks.push(taskId);
-					}
-					else
-					{
-						console.log(`Warning: Found task ${taskNames[i]} in "Player Data" but not in "Tasks"`);
-					}
-				}
-			}
-			playerData.discord = this.prasePlayerDiscord();
+			result.push(new Player(player.Name));
 		}
-
 		return result;
 	}
 
-	praseLeaderboard(leaderboard)
+	addTaskToPlayers(players, playersData, tasks)
 	{
-		let players = [];
-		for(const player of leaderboard)
-		{
-			players.push({ 
-				name: player.name,
-				experience: player.experience
-			});
-		}
-		return players;
-	}
+		const result = players;
+		const taskNames =  playersData[0]._rawData;
+		const validTasksCount = playersData[0]._sheet.headerValues.findIndex((x) => x.includes('Old-'));
 
-	prasePlayerDiscord(id)
-	{
-		if(id != '')
+		// for each player in player data
+		for (let a = 3; a < playersData.length; a++) 
 		{
-			return {
-				id: id,
-			//TODO: Add username and avatar there
-			};
+			const playerId = result.findIndex((x) => x.name === playersData[a].name);
+			if(playerId === -1) { console.log(`Player ${playerData[a].name} is missing in leaderboard`); continue; }
+
+			// for each task of player
+			for (let b = 2; b < validTasksCount; b++) 
+			{
+				const taskExperience = playersData[a]._rawData[b];
+				if(taskExperience && taskExperience.length > 1)
+				{
+					const taskId = tasks.findIndex((t) => t.name == taskNames[b]);
+					if(taskId < 0) 
+					{ 
+						if(a == 3) console.log(`Task ${taskNames[b]} is missing metadata`);
+						continue; 
+					}
+					result[playerId].addCompletedTask(tasks[taskId]);
+				}
+			}
 		}
-		else
-		{
-			return null;
-		}
+		return result;
 	}
 }
 
