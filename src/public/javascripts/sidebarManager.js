@@ -75,7 +75,7 @@ export default class SidebarManager
 				<i class="material-icons">info</i>
 				Help
 			</div>
-			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}">
+			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" onclick="shareTask(${task.id}, '${task.lowerCaseType()}', '${task.getColor()}')">
 				<i class="material-icons">share</i>
 				Share
 			</div>

@@ -45,8 +45,8 @@ html, body {
 pre
 {
 	font-family: 'Inconsolata', monospace;
-	color: #fff;
-	background-color: #302d36;
+	color: #24292e;
+	background-color: #f3f4f4;
 	border-radius: 4px;
 	padding: 0.75em;
 	margin: 0.75em 0;

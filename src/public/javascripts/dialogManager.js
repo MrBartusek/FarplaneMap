@@ -1,3 +1,5 @@
+import ShareManager from './shareManager.js';
+
 export default class DialogManager
 {
 	constructor()
@@ -56,6 +58,11 @@ export default class DialogManager
 			`When you attach evidence as link: <pre>y!submit ${name} [link]</pre>` +
 			`When you done task with couple of people: <pre>y!submit ${name} [mentions of players]</pre>`
 			, color);
+	}
+
+	shareTask(shareManager, id, type, color)
+	{
+		this.showDialog('Share Task', `You can share this ${type} by copping link below: <pre class="share-link">${shareManager.createUrl(id)}</pre>`, color);
 	}
    
 	hide()

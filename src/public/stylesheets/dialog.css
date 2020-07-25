@@ -17,8 +17,8 @@
 .dialog-surface
 {
    min-width: 400px;
-   max-width: 45%;
-   min-height: 300px;
+   max-width: 70%;
+   min-height: 50px;
    max-height: 70%;
    background-color: #fff;
    border-radius: 10px 10px 6px 6px;
