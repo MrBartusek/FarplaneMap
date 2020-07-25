@@ -32,6 +32,14 @@ app.get('/get-data', async (req, res) =>
 	}
 });
 
+app.get('/501', function (req, res) {
+	res.status(501).sendFile(__dirname + '\\public\\501.html');
+});
+
+app.use(function (req, res) {
+	res.status(404).sendFile(__dirname + '\\public\\404.html');
+});
+
 function cacheAvailable()
 {
 	if(process.argv.includes('--no-cache'))
