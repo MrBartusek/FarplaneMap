@@ -1,8 +1,24 @@
 export default class DialogManager
 {
+	constructor()
+	{
+		const dialog = document.getElementById('dialog');
+		window.onclick = function(event)
+		{
+			if(event.target == dialog)
+			{
+				hideDialog();
+			}
+		};
+	}
 	showDialog(header, content, color)
 	{
 		document.getElementById('dialog').style.display = 'flex';
+		setTimeout(() =>
+		{
+			document.getElementById('dialog').style.opacity = 1;
+		}, 1);
+		
 		document.getElementById('header').innerHTML = header + '<i class="material-icons" onclick="hideDialog()">close</i>';
 		document.getElementById('content').innerHTML = content;
 		if(color)
@@ -44,6 +60,11 @@ export default class DialogManager
    
 	hide()
 	{
-		document.getElementById('dialog').style.display = 'none';
+		document.getElementById('dialog').style.opacity = 0;
+		setTimeout(() =>
+		{
+			document.getElementById('dialog').style.display = 'none';
+		}, 100);
+		
 	}
 }
