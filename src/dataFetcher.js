@@ -10,13 +10,13 @@ class DataFetcher
 		const doc = new GoogleSpreadsheet('1hyzbaOZVq0dD_AAYnY1q24_mF52u-nYM4BteGAtqZcc');
 		doc.useApiKey(process.env.FARPLANE_KEY);
 		await doc.loadInfo(); 
-	
-		const leaderboard = await doc.sheetsByIndex[0].getRows({offset: 2});
+
 		const playerData = await doc.sheetsByIndex[1].getRows();
 		const tasks = await doc.sheetsByIndex[2].getRows();
 		result.tasks = this.praseTasks(tasks);
-		result.players = this.praseLeaderboard(leaderboard);
+		result.players = this.praseBasicPlayers(playerData);
 		result.players = this.addTaskToPlayers(result.players, playerData, result.tasks);
+		result.players.sort((a, b) => b.experience - a.experience);
 		result.tasks = this.addStatisticsToTask(result.tasks, result.players);
       
 		return result;
@@ -49,12 +49,12 @@ class DataFetcher
 		return tasks;
 	}
 
-	praseLeaderboard(leaderboard)
+	praseBasicPlayers(playersData)
 	{
 		let result = [];
-		for(const player of leaderboard)
+		for (let i = 3; i < playersData.length; i++) 
 		{
-			result.push(new Player(player.Name));
+			result.push(new Player(playersData[i].name));
 		}
 		return result;
 	}
