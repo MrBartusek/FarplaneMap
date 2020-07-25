@@ -1,6 +1,6 @@
 class Task
 {
-	constructor(id ,name, details, description, experience, repeatable, type, coordinates, image)
+	constructor(id, name, details, description, experience, repeatable, type, coordinates, image)
 	{
 		this.id = id;
 		this.name = name || 'Unknown';

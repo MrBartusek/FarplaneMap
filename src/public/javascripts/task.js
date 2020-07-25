@@ -30,6 +30,21 @@ export default class Task
 		}
 	}
 
+	getColor()
+	{
+		switch(this.type)
+		{
+		case 'Excursion':
+			return '#27ae60';
+		case 'Mission':
+			return '#e67e22';
+		case 'Dare':
+			return '#9b59b6';
+		default:
+			return undefined;
+		}
+	}
+
 	humanizeRepeatability()
 	{
 		switch(this.repeatable)

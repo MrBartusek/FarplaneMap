@@ -67,7 +67,7 @@ export default class SidebarManager
 			${task.type}
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
-			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}">
+			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" onclick="submittingTaskHelp('${task.name}', '${task.getColor()}')">
 				<i class="material-icons">done</i>
 				Submit
 			</div>

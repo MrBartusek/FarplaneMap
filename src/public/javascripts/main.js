@@ -45,6 +45,10 @@ DataLoader.loadData()
 		{
 			dialogManager.showHelp();
 		};
+		window.submittingTaskHelp = function(name, color)
+		{
+			dialogManager.submittingTaskHelp(name, color);
+		};
 		window.hideDialog = function()
 		{
 			dialogManager.hide();
