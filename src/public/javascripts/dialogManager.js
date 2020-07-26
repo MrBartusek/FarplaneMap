@@ -2,8 +2,10 @@ import ShareManager from './shareManager.js';
 
 export default class DialogManager
 {
-	constructor()
+	constructor(ranking, shareManager)
 	{
+		this.ranking = ranking;
+		this.shareManager = shareManager;
 		const dialog = document.getElementById('dialog');
 		window.onclick = function(event)
 		{
@@ -21,7 +23,8 @@ export default class DialogManager
 			document.getElementById('dialog').style.opacity = 1;
 		}, 1);
 		
-		document.getElementById('header').innerHTML = header + '<i class="material-icons" onclick="hideDialog()">close</i>';
+		document.getElementById('header').innerHTML = header + '<i class="material-icons" id="dialog-close">close</i>';
+		document.getElementById('dialog-close').addEventListener('click', () => this.hide());
 		document.getElementById('content').innerHTML = content;
 		if(color)
 		{
@@ -29,11 +32,11 @@ export default class DialogManager
 		}
 	}
    
-	showRanking(players)
+	showRanking()
 	{
 		let content = '';
-		for (let i = 0; i < players.length; i++) {
-			const player = players[i];
+		for (let i = 0; i < this.ranking.length; i++) {
+			const player = this.ranking[i];
 			content += `
          <div class="dialog-ranking-item">
             <span class="dialog-ranking-place">#${i+1}</span>
@@ -60,9 +63,9 @@ export default class DialogManager
 			, color);
 	}
 
-	shareTask(shareManager, id, type, color)
+	shareTask(id, type, color)
 	{
-		this.showDialog('Share Task', `You can share this ${type} by copping link below: <pre class="share-link">${shareManager.createUrl(id)}</pre>`, color);
+		this.showDialog('Share Task', `You can share this ${type} by copping link below: <pre class="share-link">${this.shareManager.createUrl(id)}</pre>`, color);
 	}
    
 	hide()

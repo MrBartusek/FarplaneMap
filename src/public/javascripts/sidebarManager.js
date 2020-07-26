@@ -2,10 +2,11 @@ import Task from './task.js';
 
 export default class SidebarManager
 {	
-	constructor(data, mapManager)
+	constructor(data, mapManager, dialogManager)
 	{
 		this.tasks = data;
 		this.mapManager = mapManager;
+		this.dialogManager = dialogManager;
 	}
 
 	renderTasksList()
@@ -19,7 +20,7 @@ export default class SidebarManager
 		{
 			const task = new Task(taskRaw);
 			tasksList += `
-			<div onclick="renderTask(${task.id})" class="sidebar-section-big-list-item sidebar-task sidebar-task-${task.lowerCaseType()}">
+			<div id="task-${task.id}" class="sidebar-section-big-list-item sidebar-task sidebar-task-${task.lowerCaseType()}">
 				<i class="material-icons"> ${task.getIconName()}</i>
 				${task.name} 
 			</div>`;
@@ -37,11 +38,11 @@ export default class SidebarManager
 				<i class="material-icons">person</i>
 				Select Player
 			</div>
-			<div class="sidebar-button" onclick="showRanking()">
+			<div class="sidebar-button" id="button-show-ranking">
 				<i class="material-icons">people</i>
 				Ranking
 			</div>
-			<div class="sidebar-button" onclick="showHelp()">
+			<div class="sidebar-button" id="button-show-help">
 				<i class="material-icons">info</i>
 				Help
 			</div>
@@ -54,6 +55,14 @@ export default class SidebarManager
          ${tasksList}
       </div>
 		`;
+
+		document.getElementById('button-show-ranking').addEventListener('click', () => this.dialogManager.showRanking());
+		document.getElementById('button-show-help').addEventListener('click', () => this.dialogManager.showHelp());
+
+		for(const task of this.tasks)
+		{
+			document.getElementById(`task-${task.id}`).addEventListener('click', () => this.renderTask(task.id));
+		}
 	}
 
 	renderTask(id)
@@ -67,15 +76,11 @@ export default class SidebarManager
 			${task.type}
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
-			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" onclick="submittingTaskHelp('${task.name}', '${task.getColor()}')">
+			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" id="button-submit-task-${task.id}">
 				<i class="material-icons">done</i>
 				Submit
 			</div>
-			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" onclick="showHelp()">
-				<i class="material-icons">info</i>
-				Help
-			</div>
-			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" onclick="shareTask(${task.id}, '${task.lowerCaseType()}', '${task.getColor()}')">
+			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" id="button-share-task-${task.id}">
 				<i class="material-icons">share</i>
 				Share
 			</div>
@@ -106,7 +111,14 @@ export default class SidebarManager
 				<i class="material-icons icon-${task.lowerCaseType()}">star</i>
 				Award: ${task.experience ? task.experience + 'EP': 'Unknown'}
 			</div>
-      </div>`;
+		</div>`;
+		
+		document.getElementById(`button-submit-task-${task.id}`).addEventListener('click', () => 
+			this.dialogManager.submittingTaskHelp(task.name, task.getColor())
+		);
+		document.getElementById(`button-share-task-${task.id}`).addEventListener('click', () => 
+			this.dialogManager.shareTask(task.id, task.lowerCaseType(), task.getColor())
+		);
 	}
 }
 

@@ -10,9 +10,9 @@ mapManager.map.on('click', (e) => console.log('Clicked on empty spot at: ' + e.l
 DataLoader.loadData()
 	.then(data =>
 	{
-		const sidebarManager = new SidebarManager(data.tasks, mapManager);
-		const dialogManager = new DialogManager();
 		const shareManager = new ShareManager(data.tasks);
+		const dialogManager = new DialogManager(data.players, shareManager);
+		const sidebarManager = new SidebarManager(data.tasks, mapManager, dialogManager);
 
 		for(const task of data.tasks) {
 			if(task.coordinates)
@@ -42,44 +42,6 @@ DataLoader.loadData()
 		{
 			sidebarManager.renderTasksList();
 		}
-
-		mapManager.map.on('click', (e) => 
-		{
-			sidebarManager.renderTasksList();
-			mapManager.center();
-		});
-		window.renderTask = function(id)
-		{
-			sidebarManager.renderTask(id);
-			if(data.tasks[id].coordinates)
-			{
-				mapManager.setView(data.tasks[id].coordinates, true);
-			}
-			else
-			{
-				mapManager.center();
-			}
-		};
-		window.showRanking = function()
-		{
-			dialogManager.showRanking([...data.players].sort());
-		};
-		window.showHelp = function()
-		{
-			dialogManager.showHelp();
-		};
-		window.submittingTaskHelp = function(name, color)
-		{
-			dialogManager.submittingTaskHelp(name, color);
-		};
-		window.shareTask = function(id, type, color)
-		{
-			dialogManager.shareTask(shareManager, id, type, color);
-		};
-		window.hideDialog = function()
-		{
-			dialogManager.hide();
-		};
 	})
 	.catch((error) => 
 	{
