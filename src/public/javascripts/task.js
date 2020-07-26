@@ -54,7 +54,7 @@ export default class Task
 		case 'yes':
 			return ['cached', 'Can be repeated'];
 		case 'event':
-			return ['event', 'Can be repeated during events'];
+			return ['event', 'Can be done during events'];
 		default:
 			return ['report_problem', 'Unknown Repeatability'];
 		}
