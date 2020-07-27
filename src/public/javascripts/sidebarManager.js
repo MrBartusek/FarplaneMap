@@ -76,16 +76,6 @@ export default class SidebarManager
 		<div class="sidebar-subtitle sidebar-subtitle-${task.lowerCaseType()}">
 			<i class="material-icons">${task.getIconName()}</i> ${task.type}
 		</div>
-		<div class="sidebar-section sidebar-section-buttons">
-			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" id="button-submit-task-${task.id}">
-				<i class="material-icons">done</i>
-				Submit
-			</div>
-			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" id="button-share-task-${task.id}">
-				<i class="material-icons">share</i>
-				Share
-			</div>
-		</div>
       <div class="sidebar-section sidebar-title-section">
          ${task.name || 'Unknown Quest'}
          ${task.details ? `<small>${task.details}</small>` : ''}
@@ -107,6 +97,16 @@ export default class SidebarManager
 			<div class="sidebar-section-list-item">
 				<i class="material-icons icon-${task.lowerCaseType()}">star</i>
 				Award: ${task.experience ? task.experience + 'EP': 'Unknown'}
+			</div>
+		</div>
+		<div class="sidebar-section sidebar-section-buttons">
+			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" id="button-submit-task-${task.id}">
+				<i class="material-icons">done</i>
+				Submit
+			</div>
+			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" id="button-share-task-${task.id}">
+				<i class="material-icons">share</i>
+				Share
 			</div>
 		</div>`;
 		
