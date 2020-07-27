@@ -31,7 +31,7 @@ export default class SidebarManager
 			<img src="/images/logo192.png" class="sidebar-brand-logo"></img>
 		</div>
 		<div class="sidebar-subtitle">
-			Interactive Excursion Map
+			<i class="material-icons">public</i> Interactive Excursion Map
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
 			<div class="sidebar-button">
@@ -74,7 +74,7 @@ export default class SidebarManager
 		document.getElementById('sidebar').innerHTML = `
 		<div class="sidebar-cover-image" style="background-image: url(${task.image || './images/default-cover.png'});"></div>
 		<div class="sidebar-subtitle sidebar-subtitle-${task.lowerCaseType()}">
-			${task.type}
+			<i class="material-icons">${task.getIconName()}</i> ${task.type}
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
 			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" id="button-submit-task-${task.id}">
@@ -92,10 +92,6 @@ export default class SidebarManager
 		</div>
 		<div class="sidebar-section">${task.description || 'Missing Description'}</div>
 		<div class="sidebar-section">
-			<div class="sidebar-section-list-item">
-				<i class="material-icons icon-${task.lowerCaseType()}">${task.getIconName()}</i>
-				${task.type}
-			</div>
 			<div class="sidebar-section-list-item">
 				<i class="material-icons icon-${task.lowerCaseType()}">${task.humanizeRepeatability()[0]}</i>
 				${task.humanizeRepeatability()[1]}
