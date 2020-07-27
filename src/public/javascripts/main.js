@@ -42,6 +42,12 @@ DataLoader.loadData()
 		{
 			sidebarManager.renderTasksList();
 		}
+
+		mapManager.map.on('click', (e) => 
+		{
+			sidebarManager.renderTasksList();
+			mapManager.center();
+		});
 	})
 	.catch((error) => 
 	{
