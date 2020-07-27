@@ -4,21 +4,14 @@ export default class ShareManager
 	{
 		this.tasksList = tasksList;
 	}
+
 	createUrl(taskId)
 	{
 		const task = this.tasksList[taskId];
-		if(task.name.includes('+'))
-		{
-			return 'Failed to generate URL: Task names cannot contain pluses';
-		}
-		let result = '';
-		result = task.name.replace(/ /g, '+');
-		result = result.replace(/'/g, '%27');
-		result = result.toLowerCase(); 
-		result = '/task/' + result;
+		const result = '/task/' + encodeURIComponent(task.name.toLowerCase()).replace(/%20/g, '+');
 		if(this.praseUrl(result) && this.praseUrl(result).id == taskId)
 		{
-			return window.location.host + result;
+			return window.location.protocol + '//' + window.location.host + result;
 		}
 		else
 		{
@@ -28,10 +21,7 @@ export default class ShareManager
    
 	praseUrl(pathname)
 	{
-		let result;
-		result = pathname.replace('/task/', '');
-		result = result.replace(/\+/g, ' ');
-		result = result.replace(/%27/g, '\'');
-		return this.tasksList.find((x) => x.name.toLowerCase() == result);
+		const taskName = decodeURIComponent(pathname.replace('/task/', '').replace(/\+/g, '%20'));
+		return this.tasksList.find((x) => x.name.toLowerCase() == taskName);
 	}
 }
