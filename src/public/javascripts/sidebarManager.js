@@ -78,7 +78,8 @@ export default class SidebarManager
 		</div>
       <div class="sidebar-section sidebar-title-section">
          ${task.name || 'Unknown Quest'}
-         ${task.details ? `<small>${task.details}</small>` : ''}
+			${task.details ? `<small>${task.details}</small>` : ''}
+			${task.experience ? `<small>Experience Points: ${task.experience}EP</small>` : '<small>Experience Points: Unknown</small>'}
 		</div>
 		<div class="sidebar-section">${task.description || 'Missing Description'}</div>
 		<div class="sidebar-section">
@@ -94,10 +95,6 @@ export default class SidebarManager
 				<i class="material-icons icon-${task.lowerCaseType()}">trending_up</i>
 				This task is popular
 				</div>` : ''}
-			<div class="sidebar-section-list-item">
-				<i class="material-icons icon-${task.lowerCaseType()}">star</i>
-				Award: ${task.experience ? task.experience + 'EP': 'Unknown'}
-			</div>
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
 			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" id="button-submit-task-${task.id}">
