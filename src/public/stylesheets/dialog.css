@@ -19,7 +19,7 @@
    min-width: 400px;
    max-width: 70%;
    min-height: 50px;
-   max-height: 70%;
+   max-height: 95%;
    background-color: #fff;
    border-radius: 10px 10px 6px 6px;
    box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0,0,0,.12);
@@ -48,12 +48,19 @@
    color: #ccc;
 }
 
+.dialog-center
+{
+   text-align: center;
+}
+
 .dialog-content
 {
    flex: 1;
-   padding: 15px;
+   padding: 16px;
    overflow-y: auto;
 }
+
+/* Ranking Dialog */
 
 .dialog-ranking-item
 {
@@ -83,4 +90,57 @@
 {
    flex: 0 0 auto;
    text-align: right;
+}
+
+/* Help Dialog */
+
+.dialog-task-row
+{
+   padding: 10px;
+   display: flex;
+}
+
+.dialog-task-col
+{
+   padding: 10px;
+   flex: 1 1 0;
+}
+
+.dialog-task-col p
+{
+   margin: 10px 0 0 0;
+}
+
+.dialog-task-header .material-icons
+{
+   display: block;
+   font-size: 30px;
+}
+
+.dialog-task-row + .dialog-task-row
+{
+   border-top: #e6e6e6 1px solid;
+}
+
+.dialog-discord-button
+{
+   padding: 10px;
+   color: #4e80f7;
+   font-weight: 400;
+   font-size: 1.5em;
+   border: #4e80f7 3px solid;
+   text-decoration: none;
+   display: block;
+   margin: 30px 30px 10px 30px;
+   border-radius: 6px;
+}
+
+.dialog-discord-button:hover
+{
+   background-color: rgba(78, 128, 247, 0.05);
+}
+
+.dialog-discord-button:active
+{
+   background-color: rgba(78, 128, 247, 0.2);
 }

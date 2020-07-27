@@ -1,5 +1,3 @@
-import ShareManager from './shareManager.js';
-
 export default class DialogManager
 {
 	constructor(ranking, shareManager)
@@ -7,15 +5,15 @@ export default class DialogManager
 		this.ranking = ranking;
 		this.shareManager = shareManager;
 		const dialog = document.getElementById('dialog');
-		window.onclick = () =>
+		window.addEventListener('click', () =>
 		{
 			if(event.target == dialog)
 			{
 				this.hide();
 			}
-		};
+		});
 	}
-	showDialog(header, content, color)
+	showDialog(header, content, color, center)
 	{
 		document.getElementById('dialog').style.display = 'flex';
 		setTimeout(() =>
@@ -26,10 +24,13 @@ export default class DialogManager
 		document.getElementById('header').innerHTML = header + '<i class="material-icons" id="dialog-close">close</i>';
 		document.getElementById('dialog-close').addEventListener('click', () => this.hide());
 		document.getElementById('content').innerHTML = content;
-		if(color)
+		document.getElementById('header').style.backgroundColor = color || null;
+		if(center)
 		{
-			document.getElementById('header').style.backgroundColor = color;
+			document.getElementById('dialog-surface').classList.add('dialog-center');
 		}
+		else
+		{document.getElementById('dialog-surface').classList.remove('dialog-center');}
 	}
    
 	showRanking()
@@ -49,7 +50,80 @@ export default class DialogManager
    
 	showHelp()
 	{
-		this.showDialog('Information', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut luctus viverra ante ac aliquam. Mauris posuere pretium metus, pretium auctor risus. Fusce aliquet, nulla eu venenatis euismod, purus mauris volutpat arcu, eu mattis urna elit eget ante. Phasellus tincidunt in ipsum sit amet facilisis. Curabitur ut hendrerit eros. Mauris sed ex eget eros sagittis fringilla. Morbi tempus nisi tortor, et tincidunt urna feugiat at. Etiam nec pellentesque sem. Donec blandit finibus urna, et maximus nunc feugiat ut. In scelerisque, sapien eu tincidunt ultricies, felis tellus elementum odio, nec facilisis nulla ante nec diam. Suspendisse iaculis arcu et purus lacinia faucibus. <br> <br> Proin eget nunc iaculis, maximus neque eu, luctus augue. Donec eget massa ac diam varius porttitor a a urna. Aliquam risus urna, imperdiet ac orci in, feugiat efficitur tellus. Sed imperdiet, lacus id cursus ultrices, dui felis congue est, sed tempor libero tellus sed libero. Pellentesque placerat luctus dolor. Ut nec nunc quis leo consequat vestibulum sed eget nulla. Curabitur accumsan sollicitudin ipsum, eu feugiat nunc sagittis quis.');
+		this.showDialog('Welcome to Excursion!', `
+			<div id="content" class="dialog-content">
+            <h2 style="margin-top: 0;">What is Excursion?</h2>
+            <p>
+               Excursion is a bucketlist of tasks any wynncraft player can complete and have fun with or explore the map and do
+               all sorts of wild things that put your imagination to the test. As well, there is our leaderboards where players can 
+               compete over each other for who has the most experience points earned from these tasks and who has completed most tasks too.
+            </p><p>
+               Through Excursion, our community makes of Wynncraft a sandbox experience; the tasks include one moment driving boats drunk,
+               the other waiting half an hour for a mob to spawn and going crazy over it.
+‍            </p>
+            <h2>How do you devide tasks?</h2>
+            <div class="dialog-task-row">
+               <div class="dialog-task-col">
+                  <div class="dialog-task-header icon-mission">
+                     <i class="material-icons">assignment</i><b>Missions</b>
+                  </div>
+                  <p>
+                     Activities related to items, mobs or gameplay from Wynncraft.
+                  </p>
+               </div>
+               <div class="dialog-task-col">
+                  <div class="dialog-task-header icon-excursion">
+                     <i class="material-icons">directions_walk</i><b>Excursions</b>
+                  </div>
+                  <p>
+                     Sandbox activities that involve exploring the Wynncraft world, socializing
+                     with other players, and other creative ways to have fun in its open world.
+                  </p>
+               </div>
+               <div class="dialog-task-col">
+                  <div class="dialog-task-header icon-dare">
+                     <i class="material-icons">local_fire_department</i><b>Dares</b>
+                  </div>
+                  <p>
+                     Missions and excursions of a higher difficulty.
+                  </p>
+               </div>
+            </div>
+
+            <div class="dialog-task-row">
+               <div class="dialog-task-col">
+                  <div class="dialog-task-header" style="color: #2c3e50;">
+                     <i class="material-icons">sync_disabled</i><b>Normal Tasks</b>
+                  </div>
+                  <p>
+                     You can do these tasks only one time.
+                  </p>
+               </div>
+               <div class="dialog-task-col">
+                  <div class="dialog-task-header" style="color: #2980b9">
+                     <i class="material-icons">cached</i><b>Repeatable Tasks</b>
+                  </div>
+                  <p>
+                     These task can be resubmitted every time you find the amount required of new locations or items on the list.
+                  </p>
+               </div>
+               <div class="dialog-task-col">
+                  <div class="dialog-task-header" style="color: #f39c12">
+                     <i class="material-icons">event</i><b>Event Tasks</b>
+                  </div>
+                  <p>
+                     Event tasks can be resubmitted each Farplane Event. Each event is announced on the Discord.
+                  </p>
+               </div>
+            </div>
+            <h2>How do I join?</h2>
+            <p>
+               Join our Discord if it sparks that adventurer within you and explore Wynncraft in a way you haven't before. 
+               Go ahead find some non-event task and subbmit it to our bot Yin. If you need help press <b>Submit</b> button in the task view.
+            </p>
+            <a class="dialog-discord-button" href="https://discord.gg/vUn6dVa" target='_blank' rel="noopener noreferrer">Begging your Adventure</a>
+         </div>
+		`,undefined,true);
 	}
 
 	submittingTaskHelp(name, color)
