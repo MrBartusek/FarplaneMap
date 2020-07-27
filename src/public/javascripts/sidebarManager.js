@@ -76,12 +76,6 @@ export default class SidebarManager
 		<div class="sidebar-subtitle sidebar-subtitle-${task.lowerCaseType()}">
 			<i class="material-icons">${task.getIconName()}</i> ${task.type}
 		</div>
-      <div class="sidebar-section sidebar-title-section">
-         ${task.name || 'Unknown Quest'}
-			${task.details ? `<small>${task.details}</small>` : ''}
-			${task.experience ? `<small>Experience Points: ${task.experience}EP</small>` : '<small>Experience Points: Unknown</small>'}
-		</div>
-		<div class="sidebar-section">${task.description || 'Missing Description'}</div>
 		<div class="sidebar-section">
 			<div class="sidebar-section-list-item">
 				<i class="material-icons icon-${task.lowerCaseType()}">${task.humanizeRepeatability()[0]}</i>
@@ -96,6 +90,12 @@ export default class SidebarManager
 				This task is popular
 				</div>` : ''}
 		</div>
+      <div class="sidebar-section sidebar-title-section">
+         ${task.name || 'Unknown Quest'}
+			${task.details ? `<small>${task.details}</small>` : ''}
+			${task.experience ? `<small>Experience Points: ${task.experience}EP</small>` : '<small>Experience Points: Unknown</small>'}
+		</div>
+		<div class="sidebar-section">${task.description || 'Missing Description'}</div>
 		<div class="sidebar-section sidebar-section-buttons">
 			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" id="button-submit-task-${task.id}">
 				<i class="material-icons">done</i>
