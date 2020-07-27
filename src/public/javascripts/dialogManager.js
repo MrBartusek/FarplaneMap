@@ -11,9 +11,9 @@ export default class DialogManager
 		{
 			if(event.target == dialog)
 			{
-				hideDialog();
+				this.hide();
 			}
-		};
+		}.bind(this);
 	}
 	showDialog(header, content, color)
 	{
