@@ -7,13 +7,13 @@ export default class DialogManager
 		this.ranking = ranking;
 		this.shareManager = shareManager;
 		const dialog = document.getElementById('dialog');
-		window.onclick = function(event)
+		window.onclick = () =>
 		{
 			if(event.target == dialog)
 			{
 				this.hide();
 			}
-		}.bind(this);
+		};
 	}
 	showDialog(header, content, color)
 	{

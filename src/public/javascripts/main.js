@@ -17,7 +17,11 @@ DataLoader.loadData()
 		for(const task of data.tasks) {
 			if(task.coordinates)
 			{
-				mapManager.addPinpoint(task.coordinates).on('click', () => renderTask(task.id));
+				mapManager.addPinpoint(task.coordinates).on('click', () => 
+				{
+					sidebarManager.renderTask(task.id);
+					mapManager.setView(task.coordinates, 2);
+				});
 			}
 		}
 		
