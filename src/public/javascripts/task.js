@@ -26,7 +26,7 @@ export default class Task
 			return 'local_fire_department';
 		default:
 			console.warn(`Unknown type for ${this.name} -> ${this.type}`);
-			return 'star';
+			return 'warning';
 		}
 	}
 

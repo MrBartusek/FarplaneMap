@@ -25,14 +25,9 @@ class DataFetcher
 	praseTasks(rows)
 	{
 		const tasks = [];
-		let lastType = 'Unknown';
 		for (let i = 0; i < rows.length; i++) 
 		{
 			const task = rows[i];
-			if(task.Type != '' && lastType != task.Type)
-			{
-				lastType = task.Type;
-			}
 
 			tasks.push(new Task(
 				i,
@@ -41,7 +36,7 @@ class DataFetcher
 				task.Description,
 				task['Experience Points'],
 				task.Repeatable,
-				lastType.slice(0,-1),
+				task.Type,
 				task.Coordinates && task.Coordinates.split(' '),
 				task.Image
 			));
