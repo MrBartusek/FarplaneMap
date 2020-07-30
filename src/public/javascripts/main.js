@@ -55,7 +55,14 @@ DataLoader.loadData()
 	})
 	.catch((error) => 
 	{
-		console.log(`FAILED TO LOAD DATA\r\nCODE: ${error.code}\r\nMESSAGE: ${error.message}`);
 		document.getElementById('sidebar').innerHTML = '<i class="material-icons error-icon">warning</i>';
+		if(error.error === true)
+		{
+			console.log('Backend Sent Error: \r\ncode: ${error.code}\r\nmessage: ${error.message}');
+		}
+		else
+		{
+			throw error;
+		}
 	});
 
