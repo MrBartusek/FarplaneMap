@@ -67,6 +67,14 @@ export default class Task
 
 	praseDescription()
 	{
+		window.linkClass = `sidebar-link-${this.lowerCaseType()}`;
+		var renderer = new marked.Renderer();
+		renderer.link = function(href, title, text) 
+		{
+			var link = marked.Renderer.prototype.link.call(this, href, title, text);
+			return link.replace('<a',`<a target=\'_blank\' class="${window.linkClass}" `);
+		};
+		marked.setOptions({renderer: renderer });
 		return marked(this.description);
 	}
 }

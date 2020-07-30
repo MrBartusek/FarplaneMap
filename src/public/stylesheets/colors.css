@@ -50,8 +50,6 @@
 	background-color: var(--color-dare-background);
 }
 
-/* Sidebar Buttons */
-
 .sidebar-button-excursion { color: var(--color-excursion); }
 .sidebar-button-excursion .material-icons { border: var(--color-excursion) solid 1.5px; }
 .sidebar-button-excursion .material-icons:hover { background-color: var(--color-excursion-background); }
@@ -66,3 +64,7 @@
 .sidebar-button-dare .material-icons { border: var(--color-dare) solid 1.5px; }
 .sidebar-button-dare .material-icons:hover { background-color: var(--color-dare-background); }
 .sidebar-button-dare .material-icons:active { background-color: var(--color-dare-active); }
+
+.sidebar-link-excursion { color: var(--color-excursion)}
+.sidebar-link-mission { color: var(--color-mission)}
+.sidebar-link-dare { color: var(--color-dare)}
