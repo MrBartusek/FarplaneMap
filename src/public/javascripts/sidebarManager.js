@@ -90,7 +90,7 @@ export default class SidebarManager
          ${task.name || 'Unknown Quest'}
          ${task.details ? `<small>${task.details}</small>` : ''}
 		</div>
-		<div class="sidebar-section">${task.description || 'Missing Description'}</div>
+		<div class="sidebar-section sidebar-section-markdown">${task.praseDescription() || '<p>Missing Description</p>'}</div>
 		<div class="sidebar-section">
 			<div class="sidebar-section-list-item">
 				<i class="material-icons icon-${task.lowerCaseType()}">${task.humanizeRepeatability()[0]}</i>

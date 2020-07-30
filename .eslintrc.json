@@ -31,6 +31,7 @@
         ],
         "eol-last": ["error", "always"],
         "no-undef": "off",
-        "no-unused-vars": "off"
+        "no-unused-vars": "off",
+        "no-useless-escape": "off"
     }
 }

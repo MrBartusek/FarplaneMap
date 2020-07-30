@@ -54,3 +54,26 @@
 	display: flex;
 	justify-content: center;
 }
+
+.sidebar-section-markdown ul
+{ 
+	padding-left: 30px; 
+	list-style: none; 
+}
+
+.sidebar-section-markdown li:before {
+	content: "-";
+	display: inline-block;
+	margin-left: -1.3em;
+	width: 1.3em;
+ }
+
+.sidebar-section-markdown :first-child
+{
+	margin-top: 0 !important;
+}
+
+.sidebar-section-markdown :last-child
+{
+	margin-bottom: 0 !important;
+}

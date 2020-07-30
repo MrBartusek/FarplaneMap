@@ -64,4 +64,9 @@ export default class Task
 	{
 		return this.type.toLowerCase();
 	}
+
+	praseDescription()
+	{
+		return marked(this.description);
+	}
 }
