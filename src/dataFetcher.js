@@ -37,7 +37,7 @@ class DataFetcher
 				task['Experience Points'],
 				task.Repeatable,
 				task.Type,
-				task.Coordinates && task.Coordinates.split(' '),
+				task['Interactive Map'] && task['Interactive Map'].split(' '),
 				task.Image
 			));
 		}
