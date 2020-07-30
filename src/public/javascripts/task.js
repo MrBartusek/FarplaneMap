@@ -25,7 +25,7 @@ export default class Task
 		case 'Dare':
 			return 'local_fire_department';
 		default:
-			console.warn(`Unknown type for ${task.name} -> ${task.type}`);
+			console.warn(`Unknown type for ${this.name} -> ${this.type}`);
 			return 'star';
 		}
 	}
