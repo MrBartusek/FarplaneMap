@@ -58,8 +58,12 @@ class DataFetcher
 	{
 		const result = players;
 		const taskNames =  playersData[0]._rawData;
-		const validTasksCount = playersData[0]._sheet.headerValues.findIndex((x) => x.includes('Old-'));
-
+		const validTasksCount = playersData[0]._sheet.headerValues.findIndex((x) => x.includes('taskEnd'));
+		if(validTasksCount === -1)
+		{
+			console.error('Error: validTasksCount is -1');
+			return;
+		}
 		// for each player in player data
 		for (let a = 3; a < playersData.length; a++) 
 		{
