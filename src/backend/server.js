@@ -16,10 +16,10 @@ if(!process.env.FARPLANE_KEY)
 const app = express();
 app.use(logger('dev'));
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname + '/../public')));
 app.get('/task/', (req, res) => res.redirect('/'));
-app.get('/task/*', (req, res) => res.status(200).sendFile(__dirname + '/public/index.html'));
-app.get('/501', (req, res) => res.status(501).sendFile(__dirname + '/public/501.html'));
+app.get('/task/*', (req, res) => res.status(200).sendFile(__dirname + '/../public/index.html'));
+app.get('/501', (req, res) => res.status(501).sendFile(__dirname + '/../public/501.html'));
 app.get('/get-data', async (req, res) => 
 {
 	if(cacheAvailable())
@@ -48,7 +48,7 @@ app.get('/get-data', async (req, res) =>
 	}
 });
 
-app.use((req, res) => res.status(404).sendFile(__dirname + '/public/404.html'));
+app.use((req, res) => res.status(404).sendFile(__dirname + '/../public/404.html'));
 app.listen(port, () => console.log(`Farplane map listening at port: ${port}`));
 
 function cacheAvailable()

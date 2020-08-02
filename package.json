@@ -7,7 +7,7 @@
   },
   "private": true,
   "scripts": {
-    "start": "node --unhandled-rejections=strict src/server.js"
+    "start": "node --unhandled-rejections=strict src/backend/server.js"
   },
   "author": "MrBartusek",
   "bugs": {
