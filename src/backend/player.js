@@ -1,7 +1,8 @@
 class Player
 {
-	constructor(name)
+	constructor(id, name)
 	{
+		this.id = id;
 		this.name = name;
 		this.experience = 0;
 		this.completedTasks = [];

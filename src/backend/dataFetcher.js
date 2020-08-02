@@ -49,7 +49,7 @@ class DataFetcher
 		let result = [];
 		for (let i = 3; i < playersData.length; i++) 
 		{
-			result.push(new Player(playersData[i].name));
+			result.push(new Player(i, playersData[i].name));
 		}
 		return result;
 	}
