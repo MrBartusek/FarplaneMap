@@ -22,6 +22,13 @@
 	font-weight: 200;
 }
 
+.completion-icon
+{
+	vertical-align: -4px !important;
+	margin: 0 !important;
+	color: #5f5e5e;
+}
+
 .sidebar-title-section a
 {
 	color: #5f5e5e
@@ -30,13 +37,13 @@
 .sidebar-section .material-icons
 {
 	margin: 0 10px;
-	vertical-align: bottom;
+	vertical-align: -6px;
 }
 
 .sidebar-section-list-item
 {
 	display: block;
-	padding-bottom: 8px;
+	padding-bottom: 9px;
 }
 
 .sidebar-section-big-list

@@ -32,7 +32,7 @@ class DataFetcher
 			tasks.push(new Task(
 				i,
 				task.Title,
-				task.Details,
+				task.Coordinates,
 				task.Description,
 				task['Experience Points'],
 				task.Repeatable,

@@ -3,6 +3,7 @@ import SidebarManager from './sidebarManager.js';
 import DataLoader from './dataLoader.js';
 import DialogManager from './dialogManager.js';
 import ShareManager from './shareManager.js';
+import PlayerManager from './playerManager.js';
 
 const mapManager = new MapManager(2669,1488,'images/wynnmap.jpeg');
 mapManager.map.on('click', (e) => console.log('Clicked on empty spot at: ' + e.latlng));
@@ -10,17 +11,18 @@ mapManager.map.on('click', (e) => console.log('Clicked on empty spot at: ' + e.l
 DataLoader.loadData()
 	.then(data =>
 	{
+		const playerManager = new PlayerManager(data.players);
 		const shareManager = new ShareManager(data.tasks);
 		const dialogManager = new DialogManager(data.players, shareManager);
-		const sidebarManager = new SidebarManager(data.tasks, mapManager, dialogManager);
+		const sidebarManager = new SidebarManager(data.tasks, mapManager, dialogManager, playerManager);
 
 		for(const task of data.tasks) {
-			if(task.coordinates)
+			if(task.mapCoordinates)
 			{
-				mapManager.addPinpoint(task.coordinates).on('click', () => 
+				mapManager.addPinpoint(task.mapCoordinates).on('click', () => 
 				{
 					sidebarManager.renderTask(task.id);
-					mapManager.setView(task.coordinates, 2);
+					mapManager.setView(task.mapCoordinates, 2);
 				});
 			}
 		}

@@ -8,6 +8,7 @@ export default class Task
 		this.details = data.details;
 		this.experience = data.experience;
 		this.type = data.type;
+		this.mapCoordinates = data.mapCoordinates;
 		this.coordinates = data.coordinates;
 		this.repeatable = data.repeatable;
 		this.popular = data.popular;
@@ -75,6 +76,6 @@ export default class Task
 			return link.replace('<a',`<a target=\'_blank\' class="${window.linkClass}" `);
 		};
 		marked.setOptions({renderer: renderer });
-		return marked(this.description);
+		return marked(this.description) + (this.coordinates ? `<p>Coordinates: <a href="501" class="${window.linkClass}">${this.coordinates}</a></p>` : '');
 	}
 }

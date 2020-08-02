@@ -4,7 +4,6 @@ const logger = require('morgan');
 const port = process.env.PORT || 3000;
 const fs = require('fs');
 const DataFetcher = require('./dataFetcher');
-const UserFetcher = require('./userFetcher');
 
 const cacheFileDir = __dirname + '/cache.json';
 

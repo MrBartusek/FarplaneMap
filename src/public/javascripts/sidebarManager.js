@@ -2,11 +2,12 @@ import Task from './task.js';
 
 export default class SidebarManager
 {	
-	constructor(data, mapManager, dialogManager)
+	constructor(data, mapManager, dialogManager, playerManager)
 	{
 		this.tasks = data;
 		this.mapManager = mapManager;
 		this.dialogManager = dialogManager;
+		this.playerManager = playerManager;
 	}
 
 	renderTasksList()
@@ -30,8 +31,12 @@ export default class SidebarManager
 		<div class="sidebar-brand">
 			<img src="/images/logo192.png" class="sidebar-brand-logo"></img>
 		</div>
+		
 		<div class="sidebar-subtitle">
-			<i class="material-icons">public</i> Interactive Excursion Map
+		${this.playerManager.playerAvailable() ? 
+		`<i class="material-icons">how_to_reg</i> ${this.playerManager.getPlayer().name}` :
+		'<i class="material-icons">public</i> Interactive Excursion Map' }
+
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
 			<div class="sidebar-button">
@@ -87,8 +92,9 @@ export default class SidebarManager
 			</div>
 		</div>
       <div class="sidebar-section sidebar-title-section">
-         ${task.name || 'Unknown Quest'}
-         ${task.details ? `<small>${task.details}</small>` : ''}
+			${task.name} 
+			${this.completionIcon(id)}
+			<small>Experience Points: ${task.experience}</small>
 		</div>
 		<div class="sidebar-section sidebar-section-markdown">${task.praseDescription() || '<p>Missing Description</p>'}</div>
 		<div class="sidebar-section">
@@ -104,10 +110,6 @@ export default class SidebarManager
 				<i class="material-icons icon-${task.lowerCaseType()}">trending_up</i>
 				This task is popular
 				</div>` : ''}
-			<div class="sidebar-section-list-item">
-				<i class="material-icons icon-${task.lowerCaseType()}">star</i>
-				Award: ${task.experience ? task.experience + 'EP': 'Unknown'}
-			</div>
 		</div>`;
 		
 		document.getElementById(`button-submit-task-${task.id}`).addEventListener('click', () => 
@@ -116,6 +118,25 @@ export default class SidebarManager
 		document.getElementById(`button-share-task-${task.id}`).addEventListener('click', () => 
 			this.dialogManager.shareTask(task.id, task.lowerCaseType(), task.getColor())
 		);
+	}
+
+	completionIcon(id)
+	{
+		if(this.playerManager.playerAvailable())
+		{
+			if(this.playerManager.getPlayer().completedTasks.includes(id))
+			{
+				return '<i class="material-icons completion-icon" style="color: #27ae60;">check_circle_outline</i>';
+			}
+			else
+			{
+				return '<i class="material-icons completion-icon" style="color: #c0392b;">remove_circle_outline</i>';
+			}
+		}
+		else
+		{
+			return '';
+		}
 	}
 }
 
