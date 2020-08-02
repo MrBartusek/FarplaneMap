@@ -23,6 +23,10 @@
 {
 	background-color: var(--color-excursion-background);
 }
+.sidebar-task-excursion:active
+{
+	background-color: var(--color-excursion-active);
+}
 
 .sidebar-task-mission:hover, .sidebar-task-mission:hover .material-icons, .icon-mission
 { 
@@ -36,6 +40,10 @@
 {
 	background-color: var(--color-mission-background);
 }
+.sidebar-task-mission:active
+{
+	background-color: var(--color-mission-active);
+}
 
 .sidebar-task-dare:hover, .sidebar-task-dare:hover .material-icons, .icon-dare
 { 
@@ -48,6 +56,10 @@
 .sidebar-task-dare:hover
 {
 	background-color: var(--color-dare-background);
+}
+.sidebar-task-dare:active
+{
+	background-color: var(--color-dare-active);
 }
 
 .sidebar-button-excursion { color: var(--color-excursion); }

@@ -61,7 +61,7 @@ export default class SidebarManager
 
 		for(const task of this.tasks)
 		{
-			document.getElementById(`task-${task.id}`).addEventListener('click', () => this.renderTask(task.id));
+			document.getElementById(`task-${task.id}`).addEventListener('click', () => setTimeout(() => this.renderTask(task.id), 70));
 		}
 	}
 

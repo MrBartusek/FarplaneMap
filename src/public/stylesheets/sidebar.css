@@ -27,7 +27,7 @@
 .sidebar-brand
 {
 	background-color: #002377;
-	height: 250px;
+	min-height: 250px;
 }
 
 .sidebar-brand-logo
