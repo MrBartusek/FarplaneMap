@@ -78,4 +78,23 @@ export default class Task
 		marked.setOptions({renderer: renderer });
 		return marked(this.description) + (this.coordinates ? `<p>Coordinates: <a href="501" class="${window.linkClass}">${this.coordinates}</a></p>` : '');
 	}
+
+	completionIcon(playerManager)
+	{
+		if(playerManager.playerAvailable())
+		{
+			if(playerManager.getPlayer().completedTasks.includes(this.id))
+			{
+				return '<i class="material-icons completion-icon" style="color: #27ae60;">check_circle_outline</i>';
+			}
+			else
+			{
+				return '<i class="material-icons completion-icon" style="color: #c0392b;">remove_circle_outline</i>';
+			}
+		}
+		else
+		{
+			return '';
+		}
+	}
 }

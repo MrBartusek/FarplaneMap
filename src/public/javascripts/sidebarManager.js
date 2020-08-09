@@ -93,7 +93,7 @@ export default class SidebarManager
 		</div>
       <div class="sidebar-section sidebar-title-section">
 			${task.name} 
-			${this.completionIcon(id)}
+			${task.completionIcon(this.playerManager)}
 			<small>Experience Points: ${task.experience}</small>
 		</div>
 		<div class="sidebar-section sidebar-section-markdown">${task.praseDescription() || '<p>Missing Description</p>'}</div>
@@ -118,25 +118,6 @@ export default class SidebarManager
 		document.getElementById(`button-share-task-${task.id}`).addEventListener('click', () => 
 			this.dialogManager.shareTask(task.id, task.lowerCaseType(), task.getColor())
 		);
-	}
-
-	completionIcon(id)
-	{
-		if(this.playerManager.playerAvailable())
-		{
-			if(this.playerManager.getPlayer().completedTasks.includes(id))
-			{
-				return '<i class="material-icons completion-icon" style="color: #27ae60;">check_circle_outline</i>';
-			}
-			else
-			{
-				return '<i class="material-icons completion-icon" style="color: #c0392b;">remove_circle_outline</i>';
-			}
-		}
-		else
-		{
-			return '';
-		}
 	}
 }
 
