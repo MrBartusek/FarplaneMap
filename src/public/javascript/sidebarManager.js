@@ -154,15 +154,15 @@ export default class SidebarManager
 		</div>
 		<div class="sidebar-section">
 			<div class="sidebar-section-list-item">
-				<i class="material-icons">star</i>
+				<i class="material-icons sidebar-profile-icon">star</i>
 				property
 			</div>
 			<div class="sidebar-section-list-item">
-				<i class="material-icons">star</i>
+				<i class="material-icons sidebar-profile-icon">star</i>
 				property
 			</div>
 			<div class="sidebar-section-list-item">
-				<i class="material-icons">star</i>
+				<i class="material-icons sidebar-profile-icon">star</i>
 				property
 			</div>
 		</div>

@@ -13,7 +13,7 @@
 
 .sidebar-task-excursion:hover, .sidebar-task-excursion:hover .material-icons, .icon-excursion
 { 
-	color: var(--color-excursion) !important;
+	color: var(--color-excursion);
 }
 .sidebar-subtitle-excursion
 {
@@ -30,7 +30,7 @@
 
 .sidebar-task-mission:hover, .sidebar-task-mission:hover .material-icons, .icon-mission
 { 
-	color: var(--color-mission) !important;
+	color: var(--color-mission);
 }
 .sidebar-subtitle-mission
 {
@@ -47,7 +47,7 @@
 
 .sidebar-task-dare:hover, .sidebar-task-dare:hover .material-icons, .icon-dare
 { 
-	color: var(--color-dare) !important;
+	color: var(--color-dare)
 }
 .sidebar-subtitle-dare
 {
