@@ -1,10 +1,12 @@
 import Task from './task.js';
+import Player from '../javascript/player.js';
 
 export default class SidebarManager
 {	
 	constructor(data, mapManager, dialogManager, playerManager)
 	{
-		this.tasks = data;
+		this.tasks = data.tasks;
+		this.players = data.players;
 		this.mapManager = mapManager;
 		this.dialogManager = dialogManager;
 		this.playerManager = playerManager;
@@ -74,7 +76,9 @@ export default class SidebarManager
 	{
 		if(SidebarManager.currentView == `task-${id}`) return;
 		SidebarManager.currentView = `task-${id}`;
+
 		this.mapManager.center();
+
 		const task = new Task(this.tasks[id]);
 		document.getElementById('sidebar').innerHTML = `
 		<div class="sidebar-cover-image" style="background-image: url(${task.image || './images/default-cover.png'});"></div>
@@ -118,6 +122,17 @@ export default class SidebarManager
 		document.getElementById(`button-share-task-${task.id}`).addEventListener('click', () => 
 			this.dialogManager.shareTask(task.id, task.lowerCaseType(), task.getColor())
 		);
+	}
+
+	renderPlayer(id)
+	{
+		if(SidebarManager.currentView == `player-${id}`) return;
+		SidebarManager.currentView = `player-${id}`;
+
+		this.mapManager.center();
+
+		const player = new Player(this.players[id]);
+		document.getElementById('sidebar').innerHTML = `player: ${player.name}`;
 	}
 }
 

@@ -14,7 +14,7 @@ DataLoader.loadData()
 		const playerManager = new PlayerManager(data.players);
 		const shareManager = new ShareManager(data.tasks);
 		const dialogManager = new DialogManager(data.players, shareManager);
-		const sidebarManager = new SidebarManager(data.tasks, mapManager, dialogManager, playerManager);
+		const sidebarManager = new SidebarManager(data, mapManager, dialogManager, playerManager);
 
 		for(const task of data.tasks) {
 			if(task.mapCoordinates)

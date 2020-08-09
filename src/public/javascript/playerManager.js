@@ -15,9 +15,4 @@ export default class PlayerManager
 		const cookie = Cookies.get('farplane-user');
 		return this.users.find((x) => x.name == cookie);
 	}
-
-	getTaskCompletionIcon()
-	{
-		
-	}
 }
