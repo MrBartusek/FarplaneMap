@@ -31,13 +31,14 @@
 
 .sidebar-title-section a
 {
-	color: #5f5e5e
+	color: #5f5e5e !important;
 }
 
 .sidebar-section .material-icons
 {
 	margin: 0 10px;
 	vertical-align: -6px;
+	color: #4e80f7;
 }
 
 .sidebar-section-list-item

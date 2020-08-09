@@ -131,8 +131,42 @@ export default class SidebarManager
 
 		this.mapManager.center();
 
-		const player = new Player(this.players[id]);
-		document.getElementById('sidebar').innerHTML = `player: ${player.name}`;
+		const player = new Player(this.players.find((x) => x.id == id));
+		document.getElementById('sidebar').innerHTML = `
+		<div class="sidebar-profile-header">
+			<div class="sidebar-profile-avatar" style="background-image: url(https://crafatar.com/renders/body/0edc3eb674d849b68b2a3c0782183e3a?overlay);"></div>
+			<div class="sidebar-profile-name">Web-cartographer Bartusek</div>
+			<small>Experience Points: 1337</small>
+		</div>
+		<div class="sidebar-section sidebar-section-buttons">
+			<div class="sidebar-button">
+				<i class="material-icons">share</i>
+				Share
+			</div>
+			<div class="sidebar-button">
+				<i class="material-icons">share</i>
+				Share
+			</div>
+			<div class="sidebar-button">
+				<i class="material-icons">share</i>
+				Share
+			</div>
+		</div>
+		<div class="sidebar-section">
+			<div class="sidebar-section-list-item">
+				<i class="material-icons">star</i>
+				property
+			</div>
+			<div class="sidebar-section-list-item">
+				<i class="material-icons">star</i>
+				property
+			</div>
+			<div class="sidebar-section-list-item">
+				<i class="material-icons">star</i>
+				property
+			</div>
+		</div>
+		`;
 	}
 }
 

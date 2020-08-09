@@ -15,6 +15,7 @@ DataLoader.loadData()
 		const shareManager = new ShareManager(data.tasks);
 		const dialogManager = new DialogManager(data.players, shareManager);
 		const sidebarManager = new SidebarManager(data, mapManager, dialogManager, playerManager);
+		dialogManager.addSidebarManager(sidebarManager);
 
 		for(const task of data.tasks) {
 			if(task.mapCoordinates)
@@ -43,6 +44,10 @@ DataLoader.loadData()
 					`<b>Requested url:</b> <pre>${window.location}</pre>`, '#e74c3c');
 				sidebarManager.renderTasksList();
 			}
+		}
+		else if(location.href.includes('?profile_preview'))
+		{
+			sidebarManager.renderPlayer(11);
 		}
 		else
 		{

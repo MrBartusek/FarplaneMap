@@ -13,6 +13,11 @@ export default class DialogManager
 			}
 		});
 	}
+	addSidebarManager(sidebarManager)
+	{
+		this.sidebarManager = sidebarManager;
+	}
+   
 	showDialog(header, content, color, center)
 	{
 		document.getElementById('dialog').style.display = 'flex';
@@ -36,16 +41,27 @@ export default class DialogManager
 	showRanking()
 	{
 		let content = '';
-		for (let i = 0; i < this.ranking.length; i++) {
+		for (let i = 0; i < this.ranking.length; i++) 
+		{
 			const player = this.ranking[i];
 			content += `
-         <div class="dialog-ranking-item">
+         <div class="dialog-ranking-item" id="ranking-player-${player.id}">
             <span class="dialog-ranking-place">#${i+1}</span>
             <span class="dialog-ranking-name">${player.name}</span>
             <span class="dialog-ranking-experience">${player.experience}</span>
          </div>`;
 		}
 		this.showDialog('Ranking', content);
+      
+		for (let i = 0; i < this.ranking.length; i++) 
+		{
+			const player = this.ranking[i];
+			document.getElementById(`ranking-player-${player.id}`).addEventListener('click', () => 
+			{
+				this.sidebarManager.renderPlayer(player.id);
+				this.hide();
+			});
+		}
 	}
    
 	showHelp()
