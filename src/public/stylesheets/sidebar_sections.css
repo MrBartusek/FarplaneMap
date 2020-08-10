@@ -7,6 +7,15 @@
 	border-top: #e6e6e6 1px solid;
 }
 
+.sidebar-section-title
+{
+	font-weight: 400;
+	text-align: center;
+	font-size: 1.2em;
+	margin-bottom: 12px;
+	margin-top: -6px;
+}
+
 .sidebar-title-section
 {
 	line-height: 1.3;

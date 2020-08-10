@@ -1,5 +1,6 @@
 import Task from './task.js';
 import Player from '../javascript/player.js';
+import ChartManager from './chartManager.js';
 
 export default class SidebarManager
 {	
@@ -153,20 +154,30 @@ export default class SidebarManager
 			</div>
 		</div>
 		<div class="sidebar-section">
+			<div class="sidebar-section-title">Excursion</div>
+			Completed Missions: 40/100
+			<canvas id="chart-total-missions" height="30"></canvas>
+			Completed Excursions: 40/100
+			<canvas id="chart-total-excursions" height="30"></canvas>
+			Completed Dares: 40/100
+			<canvas id="chart-total-dares" height="30"></canvas>
+		</div>
+		<div class="sidebar-section">
+			<div class="sidebar-section-title">Wynncraft</div>
 			<div class="sidebar-section-list-item">
-				<i class="material-icons sidebar-profile-icon">star</i>
-				property
+				<i class="material-icons sidebar-profile-icon">schedule</i>
+				Playtime: 10 hours
 			</div>
 			<div class="sidebar-section-list-item">
-				<i class="material-icons sidebar-profile-icon">star</i>
-				property
-			</div>
-			<div class="sidebar-section-list-item">
-				<i class="material-icons sidebar-profile-icon">star</i>
-				property
+				<i class="material-icons sidebar-profile-icon">person_add</i>
+				Joined: Jul 16th 2020
 			</div>
 		</div>
 		`;
+
+		ChartManager.progressChart(document.getElementById('chart-total-missions'), '#e67e22', 40, 100);
+		ChartManager.progressChart(document.getElementById('chart-total-excursions'), '#27ae60', 40, 100);
+		ChartManager.progressChart(document.getElementById('chart-total-dares'), '#9b59b6', 40, 100);
 	}
 }
 
