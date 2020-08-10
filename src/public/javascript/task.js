@@ -63,7 +63,7 @@ export default class Task
 
 	lowerCaseType()
 	{
-		return this.type.toLowerCase();
+		return this.type && this.type.toLowerCase();
 	}
 
 	praseDescription()
