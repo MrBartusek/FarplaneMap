@@ -13,11 +13,13 @@ class DataFetcher
 
 		const playerData = await doc.sheetsByIndex[1].getRows();
 		const tasks = await doc.sheetsByIndex[2].getRows();
+		result.statistics = {};
 		result.tasks = this.praseTasks(tasks);
 		result.players = this.praseBasicPlayers(playerData);
 		result.players = this.addTaskToPlayers(result.players, playerData, result.tasks);
 		result.players.sort((a, b) => b.experience - a.experience);
 		result.tasks = this.addStatisticsToTask(result.tasks, result.players);
+		result.statistics = this.getOverallStatistics(result.tasks);
       
 		return result;
 	}
@@ -105,6 +107,32 @@ class DataFetcher
 		
 		return result;
 
+	}
+
+	getOverallStatistics(tasks)
+	{
+		const result =
+		{
+			totalMissions: 0,
+			totalExcursions: 0,
+			totalDares: 0,
+		};
+		for(const task of tasks)
+		{
+			if(task.type == 'Mission')
+			{
+				result.totalMissions++;
+			}
+			else if(task.type == 'Excursion')
+			{
+				result.totalExcursions++;
+			}
+			else if(task.type == 'Dare')
+			{
+				result.totalDares++;
+			}
+		}
+		return result;
 	}
 }
 
