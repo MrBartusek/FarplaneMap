@@ -2,18 +2,20 @@ export default class ChartManager
 {
 	static progressChart(canvas, color, value, max)
 	{
-		const chart = new Chart(canvas.getContext('2d'), {
+		const ctx = canvas.getContext('2d');
+		new Chart(ctx, {
 			type: 'horizontalBar',
 			data: {
 				datasets: [{
-					data: [value],
+					data: [(value/max) * 100],
 					backgroundColor: color
 				}, {
-					data: [max - value],
+					data: [100 - (value/max) * 100],
 					backgroundColor: '#f2f2f2f2'
 				}]
 			},
 			options: {
+				responsive: true,
 				legend: { display: false },
 				tooltips: { enabled: false },
 				hover: { mode: null },

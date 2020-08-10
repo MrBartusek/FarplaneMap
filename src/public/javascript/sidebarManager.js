@@ -8,6 +8,7 @@ export default class SidebarManager
 	{
 		this.tasks = data.tasks;
 		this.players = data.players;
+		this.statistics = data.statistics;
 		this.mapManager = mapManager;
 		this.dialogManager = dialogManager;
 		this.playerManager = playerManager;
@@ -136,8 +137,8 @@ export default class SidebarManager
 		document.getElementById('sidebar').innerHTML = `
 		<div class="sidebar-profile-header">
 			<div class="sidebar-profile-avatar" style="background-image: url(https://crafatar.com/renders/body/0edc3eb674d849b68b2a3c0782183e3a?overlay);"></div>
-			<div class="sidebar-profile-name">Web-cartographer Bartusek</div>
-			<small>Experience Points: 1337</small>
+			<div class="sidebar-profile-name">${player.name}</div>
+			<small>Experience Points: ${player.experience}</small>
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
 			<div class="sidebar-button">
@@ -155,11 +156,11 @@ export default class SidebarManager
 		</div>
 		<div class="sidebar-section">
 			<div class="sidebar-section-title">Excursion</div>
-			Completed Missions: 40/100
+			Completed Missions: ${player.completedMissions}/${this.statistics.totalMissions}
 			<canvas id="chart-total-missions" height="30"></canvas>
-			Completed Excursions: 40/100
+			Completed Excursions: ${player.completedExcursions}/${this.statistics.totalExcursions}
 			<canvas id="chart-total-excursions" height="30"></canvas>
-			Completed Dares: 40/100
+			Completed Dares: ${player.completedDares}/${this.statistics.totalDares}
 			<canvas id="chart-total-dares" height="30"></canvas>
 		</div>
 		<div class="sidebar-section">
@@ -175,9 +176,9 @@ export default class SidebarManager
 		</div>
 		`;
 
-		ChartManager.progressChart(document.getElementById('chart-total-missions'), '#e67e22', 40, 100);
-		ChartManager.progressChart(document.getElementById('chart-total-excursions'), '#27ae60', 40, 100);
-		ChartManager.progressChart(document.getElementById('chart-total-dares'), '#9b59b6', 40, 100);
+		ChartManager.progressChart(document.getElementById('chart-total-missions'), '#e67e22', player.completedMissions, this.statistics.totalMissions);
+		ChartManager.progressChart(document.getElementById('chart-total-excursions'), '#27ae60', player.completedExcursions , this.statistics.totalExcursions);
+		ChartManager.progressChart(document.getElementById('chart-total-dares'), '#9b59b6', player.completedDares, this.statistics.totalDares);
 	}
 }
 
