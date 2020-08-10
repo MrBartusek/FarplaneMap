@@ -16,8 +16,8 @@ export default class SidebarManager
 
 	renderTasksList()
 	{
-		if(SidebarManager.currentView == 'list') return;
-		SidebarManager.currentView = 'list';
+		if(this.currentView == 'list') return;
+		this.currentView = 'list';
 
 		let tasksList = '';
 		let i = 0;
@@ -60,7 +60,7 @@ export default class SidebarManager
 				Discord
 			</a>
 		</div>
-		<div class="sidebar-section sidebar-section-big-list" style="overflow-y: scroll;">
+		<div class="sidebar-section sidebar-section-big-list" id="tasks-list" style="overflow-y: scroll;">
          ${tasksList}
       </div>
 		`;
@@ -72,12 +72,22 @@ export default class SidebarManager
 		{
 			document.getElementById(`task-${task.id}`).addEventListener('click', () => setTimeout(() => this.renderTask(task.id), 70));
 		}
+
+		document.getElementById('tasks-list').addEventListener('scroll', (e) =>
+		{
+			this.lastTaskListScrollTop = document.getElementById('tasks-list').scrollTop;
+		});
+
+		if(this.lastTaskListScrollTop)
+		{
+			document.getElementById('tasks-list').scrollTop = this.lastTaskListScrollTop;
+		}
 	}
 
 	renderTask(id)
 	{
-		if(SidebarManager.currentView == `task-${id}`) return;
-		SidebarManager.currentView = `task-${id}`;
+		if(this.currentView == `task-${id}`) return;
+		this.currentView = `task-${id}`;
 
 		this.mapManager.center();
 
@@ -128,8 +138,8 @@ export default class SidebarManager
 
 	renderPlayer(id)
 	{
-		if(SidebarManager.currentView == `player-${id}`) return;
-		SidebarManager.currentView = `player-${id}`;
+		if(this.currentView == `player-${id}`) return;
+		this.currentView = `player-${id}`;
 
 		this.mapManager.center();
 
