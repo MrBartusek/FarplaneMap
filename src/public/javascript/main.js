@@ -8,7 +8,7 @@ import PlayerManager from './playerManager.js';
 const mapManager = new MapManager(2669,1488,'images/wynnmap.jpeg');
 mapManager.map.on('click', (e) => console.log('Clicked on empty spot at: ' + e.latlng));
 
-DataLoader.loadData()
+new DataLoader().loadData()
 	.then(data =>
 	{
 		const playerManager = new PlayerManager(data.players);

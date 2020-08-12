@@ -1,6 +1,7 @@
 import Task from './task.js';
-import Player from '../javascript/player.js';
+import Player from './player.js';
 import ChartManager from './chartManager.js';
+import DataLoader from './dataLoader.js';
 
 export default class SidebarManager
 {	
@@ -146,9 +147,9 @@ export default class SidebarManager
 		const player = new Player(this.players.find((x) => x.id == id));
 		document.getElementById('sidebar').innerHTML = `
 		<div class="sidebar-profile-header">
-			<div class="sidebar-profile-avatar" style="background-image: url(https://crafatar.com/renders/body/0edc3eb674d849b68b2a3c0782183e3a?overlay);"></div>
+			<div id="discord-avatar" class="sidebar-profile-avatar"></div>
 			<div class="sidebar-profile-name">${player.name}</div>
-			<small>Experience Points: ${player.experience}</small>
+			<small id="discord-name">Discord Unknown</small>
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
 			<div class="sidebar-button">
@@ -174,21 +175,34 @@ export default class SidebarManager
 			<canvas id="chart-total-dares" height="30"></canvas>
 		</div>
 		<div class="sidebar-section">
-			<div class="sidebar-section-title">Wynncraft</div>
-			<div class="sidebar-section-list-item">
-				<i class="material-icons sidebar-profile-icon">schedule</i>
-				Playtime: 10 hours
-			</div>
-			<div class="sidebar-section-list-item">
-				<i class="material-icons sidebar-profile-icon">person_add</i>
-				Joined: Jul 16th 2020
-			</div>
+		<div class="sidebar-section-list-item">
+			<i class="material-icons sidebar-profile-icon">star</i>
+			Experience Points: ${player.experience}
 		</div>
+	</div>
 		`;
-
 		ChartManager.progressChart(document.getElementById('chart-total-missions'), '#e67e22', player.completedMissions, this.statistics.totalMissions);
 		ChartManager.progressChart(document.getElementById('chart-total-excursions'), '#27ae60', player.completedExcursions , this.statistics.totalExcursions);
 		ChartManager.progressChart(document.getElementById('chart-total-dares'), '#9b59b6', player.completedDares, this.statistics.totalDares);
+
+		new DataLoader().loadDiscordData(player.discord)
+			.then((data) =>
+			{
+				document.getElementById('discord-avatar').style.backgroundImage = `url(${data.avatar})`;
+				document.getElementById('discord-name').innerHTML = data.username;
+			})
+			.catch((error) =>
+			{
+				if(error.error === true)
+				{
+					console.log(`Discord Backend Sent Error: \r\ncode: ${error.code}\r\nmessage: ${error.message}`);
+					document.getElementById('discord-avatar').style.backgroundImage = 'url(images/discord-default.png)';
+				}
+				else
+				{
+					throw error;
+				}
+			});
 	}
 }
 

@@ -7,15 +7,13 @@
 
 .sidebar-profile-avatar
 {
-   width: 150px;
-   height: 150px;
+   width: 128px;
+   height: 128px;
    margin: auto;
    border-radius: 50%;
-   background-repeat: no-repeat;
-   background-position: 50% 10px;
-   background-color: #fff;
-   background-size: 70%;
-   margin-top: 25px;
+   background-size: cover;
+   background-color: #ccc;
+   margin-top: 32px;
 }
 
 .sidebar-profile-name
