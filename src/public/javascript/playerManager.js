@@ -1,8 +1,8 @@
 export default class PlayerManager
 {
-	constructor(users)
+	constructor(players)
 	{
-		this.users = users;
+		this.players = players;
 	}
    
 	playerAvailable()
@@ -13,6 +13,12 @@ export default class PlayerManager
 	getPlayer()
 	{
 		const cookie = Cookies.get('farplane-user');
-		return this.users.find((x) => x.name == cookie);
+		return this.players.find((x) => x.name == cookie);
+	}
+
+	setPlayer(id)
+	{
+		const player = this.players.find((x) => x.id == id);
+		Cookies.set('farplane-user', player.name);
 	}
 }

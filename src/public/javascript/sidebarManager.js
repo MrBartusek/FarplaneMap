@@ -152,7 +152,7 @@ export default class SidebarManager
 			<small id="discord-name">Discord Unknown</small>
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
-			<div class="sidebar-button">
+			<div class="sidebar-button" id="button-select-player-${player.id}">
 				<i class="material-icons">person</i>
 				Select
 			</div>
@@ -178,8 +178,14 @@ export default class SidebarManager
 			<i class="material-icons sidebar-profile-icon">trending_up</i>
 			Ranking Position: #0
 		</div>
-	</div>
 		`;
+
+		document.getElementById(`button-select-player-${player.id}`).addEventListener('click', () => 
+		{
+			this.playerManager.setPlayer(player.id);
+			setTimeout(() => this.renderTasksList(), 70);
+		});
+
 		ChartManager.progressChart(document.getElementById('chart-total-missions'), '#e67e22', player.completedMissions, this.statistics.totalMissions);
 		ChartManager.progressChart(document.getElementById('chart-total-excursions'), '#27ae60', player.completedExcursions , this.statistics.totalExcursions);
 		ChartManager.progressChart(document.getElementById('chart-total-dares'), '#9b59b6', player.completedDares, this.statistics.totalDares);
