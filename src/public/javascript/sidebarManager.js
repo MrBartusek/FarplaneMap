@@ -153,12 +153,8 @@ export default class SidebarManager
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
 			<div class="sidebar-button">
-				<i class="material-icons">share</i>
-				Share
-			</div>
-			<div class="sidebar-button">
-				<i class="material-icons">share</i>
-				Share
+				<i class="material-icons">person</i>
+				Select
 			</div>
 			<div class="sidebar-button">
 				<i class="material-icons">share</i>
@@ -166,7 +162,6 @@ export default class SidebarManager
 			</div>
 		</div>
 		<div class="sidebar-section">
-			<div class="sidebar-section-title">Excursion</div>
 			Completed Missions: ${player.completedMissions}/${this.statistics.totalMissions}
 			<canvas id="chart-total-missions" height="30"></canvas>
 			Completed Excursions: ${player.completedExcursions}/${this.statistics.totalExcursions}
@@ -178,6 +173,10 @@ export default class SidebarManager
 		<div class="sidebar-section-list-item">
 			<i class="material-icons sidebar-profile-icon">star</i>
 			Experience Points: ${player.experience}
+		</div>
+		<div class="sidebar-section-list-item">
+			<i class="material-icons sidebar-profile-icon">trending_up</i>
+			Ranking Position: #0
 		</div>
 	</div>
 		`;
