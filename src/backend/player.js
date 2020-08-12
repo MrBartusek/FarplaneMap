@@ -6,6 +6,7 @@ class Player
 		this.name = name;
 		this.discord = discord;
 		this.experience = 0;
+		this.ranking = 0;
 		this.completedMissions = 0;
 		this.completedExcursions = 0;
 		this.completedDares = 0;
@@ -28,6 +29,11 @@ class Player
 		{
 			this.completedDares++;
 		}
+	}
+
+	addRanking(position)
+	{
+		this.ranking = position;
 	}
 }
 

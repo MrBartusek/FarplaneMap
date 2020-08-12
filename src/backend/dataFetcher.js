@@ -17,9 +17,14 @@ class DataFetcher
 		result.tasks = this.praseTasks(tasks);
 		result.players = this.praseBasicPlayers(playerData);
 		result.players = this.addTaskToPlayers(result.players, playerData, result.tasks);
-		result.players.sort((a, b) => b.experience - a.experience);
 		result.tasks = this.addStatisticsToTask(result.tasks, result.players);
 		result.statistics = this.getOverallStatistics(result.tasks);
+		result.players.sort((a, b) => b.experience - a.experience);
+		for (let i = 0; i < result.players.length; i++) 
+		{
+			result.players[i].addRanking(i + 1);
+		}
+		
       
 		return result;
 	}

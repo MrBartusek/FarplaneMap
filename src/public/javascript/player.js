@@ -6,6 +6,7 @@ export default class Player
 		this.name = data.name;
 		this.discord = data.discord;
 		this.experience = data.experience;
+		this.ranking = data.ranking;
 		this.completedMissions = data.completedMissions;
 		this.completedExcursions = data.completedExcursions;
 		this.completedDares = data.completedDares;

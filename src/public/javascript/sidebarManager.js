@@ -176,7 +176,7 @@ export default class SidebarManager
 		</div>
 		<div class="sidebar-section-list-item">
 			<i class="material-icons sidebar-profile-icon">trending_up</i>
-			Ranking Position: #0
+			Ranking Position: #${player.ranking}
 		</div>
 		`;
 
