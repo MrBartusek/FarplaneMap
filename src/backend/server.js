@@ -5,6 +5,8 @@ const port = process.env.PORT || 3000;
 const fs = require('fs');
 const DataFetcher = require('./dataFetcher');
 const CacheManager = require('./cacheManager');
+const DiscordFetcher = require('./discordFetcher');
+
 if(!process.env.FARPLANE_GOOGLE_KEY | !process.env.FARPLANE_DISCORD_KEY)
 {
 	console.log('Fatal: FARPLANE_GOOGLE_KEY or FARPLANE_DISCORD_KEY not provided');
@@ -45,6 +47,59 @@ app.get('/get-data', async (req, res) =>
 					code: 500,
 				}
 			);
+		}
+	}
+});
+
+app.get('/get-user-discord', async (req, res) => 
+{
+	const id = req.query && req.query.id;
+	if(id == undefined || id.length < 2)
+	{
+		res.status(400).json(
+			{
+				error: true,
+				message: 'Invalid User Snowflake',
+				code: 400,
+			}
+		);
+		return;
+	}
+	if(cacheManager.userCacheAvailable(id))
+	{
+		res.status(200).json(cacheManager.getUserCache(id));
+	}
+	else
+	{
+		try 
+		{
+			const result = await new DiscordFetcher().getUser(id);
+			cacheManager.saveUserCache(id, result);
+			res.status(200).json({ cache: false, ...result});
+		} 
+		catch (error) 
+		{
+			if(error.message.includes('Invalid Snowflake'))
+			{
+				res.status(400).json(
+					{
+						error: true,
+						message: 'Invalid User Snowflake',
+						code: 400,
+					}
+				);
+			}
+			else
+			{
+				console.log('Failed to get user data: ' + error.stack);
+				res.status(500).json(
+					{
+						error: true,
+						message: 'Internal Server Error',
+						code: 500,
+					}
+				);
+			}
 		}
 	}
 });
