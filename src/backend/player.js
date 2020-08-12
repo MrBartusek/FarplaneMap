@@ -1,9 +1,10 @@
 class Player
 {
-	constructor(id, name)
+	constructor(id, name, discord)
 	{
 		this.id = id;
 		this.name = name;
+		this.discord = discord;
 		this.experience = 0;
 		this.completedMissions = 0;
 		this.completedExcursions = 0;

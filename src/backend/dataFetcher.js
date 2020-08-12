@@ -51,7 +51,7 @@ class DataFetcher
 		let result = [];
 		for (let i = 3; i < playersData.length; i++) 
 		{
-			result.push(new Player(i, playersData[i].name));
+			result.push(new Player(i, playersData[i].name, playersData[i].discord));
 		}
 		return result;
 	}
