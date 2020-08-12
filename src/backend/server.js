@@ -4,14 +4,14 @@ const logger = require('morgan');
 const port = process.env.PORT || 3000;
 const fs = require('fs');
 const DataFetcher = require('./dataFetcher');
-
-const cacheFileDir = __dirname + '/cache.json';
-
-if(!process.env.FARPLANE_KEY)
+const CacheManager = require('./cacheManager');
+if(!process.env.FARPLANE_GOOGLE_KEY | !process.env.FARPLANE_DISCORD_KEY)
 {
-	console.log('Fatal: FARPLANE_KEY not provided');
+	console.log('Fatal: FARPLANE_GOOGLE_KEY or FARPLANE_DISCORD_KEY not provided');
 	process.exit(5);
 }
+
+const cacheManager = new CacheManager(__dirname + '/cache');
 
 const app = express();
 app.use(logger('dev'));
@@ -23,16 +23,16 @@ app.get('/501', (req, res) => res.status(501).sendFile(path.resolve('src/public/
 
 app.get('/get-data', async (req, res) => 
 {
-	if(cacheAvailable())
+	if(cacheManager.mainCacheAvailable())
 	{
-		res.status(200).json({ cache: true, ...JSON.parse(fs.readFileSync(cacheFileDir))});
+		res.status(200).json(cacheManager.getMainCache());
 	}
 	else
 	{
 		try 
 		{
 			const result = await new DataFetcher().getData();
-			fs.writeFileSync(cacheFileDir, JSON.stringify(result));
+			cacheManager.saveMainCache(result);
 			res.status(200).json({ cache: false, ...result});
 		} 
 		catch (error) 
@@ -51,19 +51,3 @@ app.get('/get-data', async (req, res) =>
 
 app.use((req, res) => res.status(404).sendFile(path.resolve('src/public/404.html')));
 app.listen(port, () => console.log(`Farplane map listening at port: ${port}`));
-
-function cacheAvailable()
-{
-	if(process.argv.includes('--no-cache'))
-	{
-		return false;
-	}
-	if(!fs.existsSync(cacheFileDir))
-	{
-		return false;
-	}
-	const data = JSON.parse(fs.readFileSync(cacheFileDir ).toString());
-	return +new Date - parseInt(data.requestedAt) < 3600000; // One hour in ms
-}
-
-
