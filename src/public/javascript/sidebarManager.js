@@ -37,9 +37,9 @@ export default class SidebarManager
 			<img src="/images/logo192.png" class="sidebar-brand-logo"></img>
 		</div>
 		
-		<div class="sidebar-subtitle">
+		<div class="sidebar-subtitle ${this.playerManager.playerAvailable() ? 'sidebar-subtitle-clickable' : ''}">
 		${this.playerManager.playerAvailable() ? 
-		`<i class="material-icons">how_to_reg</i> ${this.playerManager.getPlayer().name}` :
+		`<i class="material-icons">person</i> ${this.playerManager.getPlayer().name} - ${this.playerManager.getPlayer().experience} EP` :
 		'<i class="material-icons">public</i> Interactive Excursion Map' }
 
 		</div>
@@ -73,12 +73,15 @@ export default class SidebarManager
 		{
 			document.getElementById(`task-${task.id}`).addEventListener('click', () => setTimeout(() => this.renderTask(task.id), 70));
 		}
+		if(this.playerManager.playerAvailable())
+		{
+			document.getElementsByClassName('sidebar-subtitle')[0].addEventListener('click', () => this.renderPlayer(this.playerManager.getPlayer().id));
+		}
 
 		document.getElementById('tasks-list').addEventListener('scroll', (e) =>
 		{
 			this.lastTaskListScrollTop = document.getElementById('tasks-list').scrollTop;
 		});
-
 		if(this.lastTaskListScrollTop)
 		{
 			document.getElementById('tasks-list').scrollTop = this.lastTaskListScrollTop;

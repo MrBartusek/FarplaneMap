@@ -67,6 +67,12 @@
 	line-height: 1.2em;
 }
 
+.sidebar-subtitle-clickable:hover
+{
+	background-color: #3c74f6;
+	cursor: pointer;
+}
+
 .sidebar-subtitle .material-icons
 {
 	vertical-align: -6px;
