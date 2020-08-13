@@ -11,15 +11,8 @@ export default class NotificationManager
 				{
 					document.getElementById('notification-title').innerHTML = data.title;
 					document.getElementById('notification-text').innerHTML = data.message;
-					if(!data.inProgress)
-					{
-						this.updateTimer(data.unix);
-						setInterval(() => this.updateTimer(data.unix), 1000);
-					}
-					else
-					{
-						document.getElementById('notification-counter').style.display = 'none';
-					}
+					this.updateTimer(data.unix);
+					setInterval(() => this.updateTimer(data.unix), 1000);
 					setTimeout(() => document.getElementById('notification').style.transform = 'translateY(0)', data.cache ? 1000 : 0);	
 					document.getElementById('notification-close').addEventListener('click', () => 
 					{
@@ -45,7 +38,7 @@ export default class NotificationManager
 		let delta =  Math.round(time - (new Date().getTime() / 1000));
 		if(delta < 0)
 		{
-			location.reload();
+			document.getElementById('notification-counter').innerHTML = '<span style="color: #c0392b">⬤</span> LIVE';
 			return;
 		}
 		let hours = Math.floor(delta / 3600) % 24;
