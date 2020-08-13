@@ -18,10 +18,30 @@ export default class DataLoader
 				return data;
 			});
 	}
+
 	loadDiscordData(id)
 	{
 		console.log('Loading discord user info from /get-user-discord...');
 		return fetch('/get-user-discord?id=' + id)
+			.then(response => response.json())
+			.then(data => 
+			{
+				if(data.error)
+				{
+					return Promise.reject(data);
+				}
+				const requestedAgo = Math.round((+new Date - parseInt(data.requestedAt)) / 1000);
+				console.log(data.cache ? 
+					`Got cached data from ${requestedAgo} seconds ago` : 
+					`Got fresh data from ${requestedAgo} seconds ago`); 
+				return data;
+			});
+	}
+
+	loadEventData()
+	{
+		console.log('Loading event data from /get-event...');
+		return fetch('/get-event')
 			.then(response => response.json())
 			.then(data => 
 			{

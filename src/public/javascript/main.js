@@ -4,6 +4,7 @@ import DataLoader from './dataLoader.js';
 import DialogManager from './dialogManager.js';
 import ShareManager from './shareManager.js';
 import PlayerManager from './playerManager.js';
+import NotificationManager from './notificationManager.js';
 
 const mapManager = new MapManager(2669,1488,'images/wynnmap.jpeg');
 mapManager.map.on('click', (e) => console.log('Clicked on empty spot at: ' + e.latlng));
@@ -11,6 +12,7 @@ mapManager.map.on('click', (e) => console.log('Clicked on empty spot at: ' + e.l
 new DataLoader().loadData()
 	.then(data =>
 	{
+		new NotificationManager().showEventNotification();
 		const playerManager = new PlayerManager(data.players);
 		const shareManager = new ShareManager(data.tasks);
 		const dialogManager = new DialogManager(data.players, shareManager);

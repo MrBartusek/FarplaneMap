@@ -18,20 +18,19 @@ class EventFetcher
 			if(event.Status == '')
 			{
 				const date = moment.tz(event.Date, 'America/New_York');
-				const remainingSeconds = date.diff(moment(), 'seconds') < 0;
-				const inProgress = moment.tz(event.Date, 'America/New_York');
-				if(remainingSeconds > 60 * 60 * 24 * 2) continue;
-				return {
+				const inProgress = date.diff(moment(), 'seconds') < 0;
+				if(date.diff(moment(), 'seconds') > 60 * 60 * 24) continue;
+				return {...result,
 					available: true,
 					unix: moment.tz(event.Date, 'America/New_York').unix(),
 					title: event['Title Override'] ? event['Title Override'] : 'Farplane Event ' + event.Event,
 					message: event['Message Override'] ? event['Message Override'] : 
 						(inProgress ? 'Join us on the ongoing event!' : 'Join us on incoming event!'),
-					ongoing: inProgress
+					inProgress: inProgress
 				};
 			}
 		}
-		return { available: false };
+		return {...result, available: false };
 	}
 }
 
