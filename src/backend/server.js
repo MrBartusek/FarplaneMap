@@ -6,6 +6,7 @@ const fs = require('fs');
 const DataFetcher = require('./dataFetcher');
 const CacheManager = require('./cacheManager');
 const DiscordFetcher = require('./discordFetcher');
+const EventFetcher = require('./eventFetcher');
 
 if(!process.env.FARPLANE_GOOGLE_KEY | !process.env.FARPLANE_DISCORD_KEY)
 {
@@ -103,6 +104,36 @@ app.get('/get-user-discord', async (req, res) =>
 		}
 	}
 });
+
+app.get('/get-event', async (req, res) => 
+{
+	if(cacheManager.eventCacheAvailable())
+	{
+		res.status(200).json(cacheManager.getEventCache());
+	}
+	else
+	{
+		try 
+		{
+			const result = await new EventFetcher().getEvent();
+			cacheManager.saveEventCache(result);
+			res.status(200).json({ cache: false, ...result});
+		} 
+		catch (error) 
+		{
+			console.log('Failed to get event data: ' + error.stack);
+			res.status(500).json(
+				{
+					error: true,
+					message: 'Internal Server Error',
+					code: 500,
+				}
+			);
+		}
+	}
+});
+
+
 
 app.use((req, res) => res.status(404).sendFile(path.resolve('src/public/404.html')));
 app.listen(port, () => console.log(`Farplane map listening at port: ${port}`));

@@ -57,6 +57,27 @@ class CacheManager
 		this.createCacheDirectory();
 		fs.writeFileSync(this.cacheDirectory + `/discord_${id}.json`, JSON.stringify(data));
 	}
+
+	eventCacheAvailable()
+	{
+		if(process.argv.includes('--no-cache')) return false;
+		this.createCacheDirectory();
+		if(!fs.existsSync(this.cacheDirectory + '/event_cache.json')) return false;
+		const data = JSON.parse(fs.readFileSync(this.cacheDirectory + '/event_cache.json').toString());
+		return +new Date - parseInt(data.requestedAt) < 600000;
+	}
+   
+	getEventCache()
+	{
+		this.createCacheDirectory();
+		return { cache: true, ...JSON.parse(fs.readFileSync(this.cacheDirectory + '/event_cache.json'))};
+	}
+   
+	saveEventCache(data)
+	{
+		this.createCacheDirectory();
+		fs.writeFileSync(this.cacheDirectory + '/event_cache.json', JSON.stringify(data));
+	}
 }
 
 module.exports = CacheManager;
