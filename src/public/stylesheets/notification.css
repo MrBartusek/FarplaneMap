@@ -9,7 +9,7 @@
    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
    color: white;
    font-weight: 400;
-   display: flex;
+   display: none;
    padding: 16px;
    margin: 12px 16px;
    border-radius: 5px;
