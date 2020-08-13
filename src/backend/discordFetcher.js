@@ -15,7 +15,7 @@ class DiscordFetcher
 				}
 				result.id = data.id;
 				result.username = data.username + '#' + data.discriminator;
-				result.avatar = `https://cdn.discordapp.com/avatars/${data.id}/a_${data.avatar}.png?size=256`;
+				result.avatar = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png?size=256`;
 				return result;
 			});
 	}
