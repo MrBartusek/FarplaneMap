@@ -9,20 +9,24 @@ export default class NotificationManager
 			{
 				if(data.available)
 				{
+					console.log('Event Available');
+					document.getElementById('notification').style.transition = 'transform .5s ease-out';
 					document.getElementById('notification-title').innerHTML = data.title;
 					document.getElementById('notification-text').innerHTML = data.message;
 					this.updateTimer(data.unix);
 					setInterval(() => this.updateTimer(data.unix), 1000);
 					setTimeout(() => 
 					{
-						document.getElementById('notification').style.display = 'flex';
-						setTimeout(() => document.getElementById('notification').style.transform = 'translateY(0)', 1);
+						document.getElementById('notification').style.transform = 'translateY(0)';
 					}, data.cache ? 1000 : 0);	
 					document.getElementById('notification-close').addEventListener('click', () => 
 					{
 						document.getElementById('notification').style.transform = null;
-						setTimeout(() => document.getElementById('notification').style.display = 'none', 1000);
 					});	
+				}
+				else
+				{
+					console.log('No Event Available');
 				}
 			})
 			.catch((error) =>
