@@ -1,0 +1,20 @@
+{
+    "lang": "en",
+    "description": "Excursion is a bucketlist of tasks any wynncraft player can complete and have fun with or explore the map and do all sorts of wild things that put your imagination to the test.",
+    "name": "Farplane",
+    "theme_color": "#4e80f7",
+    "background_color": "#ffffff",
+    "display": "browser",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "images/logo512.png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "images/logo192.png",
+            "sizes": "192x192"
+        }
+    ]
+}
