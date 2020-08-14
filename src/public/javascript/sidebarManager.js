@@ -93,9 +93,16 @@ export default class SidebarManager
 		if(this.currentView == `task-${id}`) return;
 		this.currentView = `task-${id}`;
 
-		this.mapManager.center();
-
 		const task = new Task(this.tasks[id]);
+		if(task.mapCoordinates)
+		{
+			this.mapManager.setView(task.mapCoordinates, 2);
+		}
+		else
+		{
+			this.mapManager.center();
+		}
+
 		document.getElementById('sidebar').innerHTML = `
 		<div class="sidebar-cover-image" style="background-image: url(${task.image || './images/default-cover.png'});"></div>
 		<div class="sidebar-subtitle sidebar-subtitle-${task.lowerCaseType()}">
