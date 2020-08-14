@@ -12,7 +12,7 @@ class EventFetcher
 		doc.useApiKey(process.env.FARPLANE_GOOGLE_KEY);
 		await doc.loadInfo(); 
 
-		const events = await doc.sheetsByIndex[3].getRows();
+		const events = await doc.sheetsByIndex[5].getRows();
 		for(const event of events)
 		{
 			if(event.Status == '')
