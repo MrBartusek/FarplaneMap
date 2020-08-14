@@ -51,3 +51,13 @@ pre
 	padding: 0.75em;
 	margin: 0.75em 0;
 }
+
+.material-icons
+{
+   -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
