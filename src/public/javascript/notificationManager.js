@@ -4,6 +4,10 @@ export default class NotificationManager
 {
 	showEventNotification()
 	{
+		if(Cookies.get('no-event') == 1)
+		{
+			return;
+		}
 		new DataLoader().loadEventData()
 			.then((data) =>
 			{
