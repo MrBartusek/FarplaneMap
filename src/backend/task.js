@@ -1,6 +1,6 @@
 class Task
 {
-	constructor(id, name, coordinates, description, experience, repeatable, type, mapCoordinates, image)
+	constructor(id, name, coordinates, description, experience, repeatable, type, mapCoordinates, images)
 	{
 		this.id = id;
 		this.name = name || 'Unknown';
@@ -10,7 +10,7 @@ class Task
 		this.repeatable = repeatable || 'no';
 		this.type = type;
 		this.mapCoordinates = mapCoordinates;
-		this.image = image;
+		this.images = images;
 	}
    
 	addStatistic(completedPercentage)

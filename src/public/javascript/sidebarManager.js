@@ -104,12 +104,29 @@ export default class SidebarManager
 			this.mapManager.center();
 		}
 
+		let imagesList = '';
+		if(task.images && task.images.length > 1)
+		{
+			for(const image of task.images)
+			{
+				imagesList += `<div class="sidebar-gallery-image" style="background-image: url(\'${image}\');"></div>`;
+			}
+		}
+		else if(task.images)
+		{
+			imagesList = `<div class="sidebar-gallery-image" style="display: block; background-image: url(\'${task.images[0]}\');"></div>`;
+		}
+		else
+		{
+			imagesList += '<div class="sidebar-gallery-image" style="display: block; background-image: url(\'./images/default-cover.png\')"></div>';
+		}
+
 		document.getElementById('sidebar').innerHTML = `
 		<div class="sidebar-cover-gallery">
-		<i class="gallery-slide-prev gallery-navigation material-icons">arrow_back_ios</i>
-			<i class="gallery-slide-next gallery-navigation material-icons">arrow_forward_ios</i>
-			<div class="sidebar-gallery-image" style="background-image: url(${task.image || './images/default-cover.png'});"></div>
-			<div class="sidebar-gallery-image" style="background-image: url(${task.image || './images/default-cover-2.png'});"></div>
+			${task.images && task.images.length > 1 ? `
+			<i class="gallery-slide-prev gallery-navigation material-icons">arrow_back_ios</i>
+			<i class="gallery-slide-next gallery-navigation material-icons">arrow_forward_ios</i>` : ''}
+			${imagesList}
 		</div>
 		<div class="sidebar-subtitle sidebar-subtitle-${task.lowerCaseType()}">
 			<i class="material-icons">${task.getIconName()}</i> ${task.type}
@@ -145,7 +162,10 @@ export default class SidebarManager
 				</div>` : ''}
 		</div>`;
 
-		updateGallery();
+		if(task.images && task.images.length > 1)
+		{
+			updateGallery();
+		}
 		document.getElementById(`button-submit-task-${task.id}`).addEventListener('click', () => 
 			this.dialogManager.submittingTaskHelp(task.name, task.getColor())
 		);

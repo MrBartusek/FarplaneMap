@@ -13,6 +13,7 @@ export default class Task
 		this.repeatable = data.repeatable;
 		this.popular = data.popular;
 		this.completedPercentage = data.completedPercentage;
+		this.images = data.images;
 	}
 
 	getIconName()

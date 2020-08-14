@@ -45,7 +45,7 @@ class DataFetcher
 				task.Repeatable,
 				task.Type,
 				task['Interactive Map'] && task['Interactive Map'].split(' '),
-				task.Image
+				task.Images && task.Images.split(' ')
 			));
 		}
 		return tasks;
