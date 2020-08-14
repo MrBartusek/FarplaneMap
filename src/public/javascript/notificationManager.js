@@ -51,6 +51,7 @@ export default class NotificationManager
 		let delta =  Math.round(time - (new Date().getTime() / 1000));
 		if(delta < 0)
 		{
+			document.getElementById('notification-counter').style.animation = 'pulse-red 2s infinite';
 			document.getElementById('notification-counter').innerHTML = '<span style="color: #c0392b">⬤</span> LIVE';
 			return;
 		}
