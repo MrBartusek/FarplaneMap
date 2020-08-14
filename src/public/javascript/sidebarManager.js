@@ -2,6 +2,7 @@ import Task from './task.js';
 import Player from './player.js';
 import ChartManager from './chartManager.js';
 import DataLoader from './dataLoader.js';
+import updateGallery from './gallery .js';
 
 export default class SidebarManager
 {	
@@ -104,7 +105,12 @@ export default class SidebarManager
 		}
 
 		document.getElementById('sidebar').innerHTML = `
-		<div class="sidebar-cover-image" style="background-image: url(${task.image || './images/default-cover.png'});"></div>
+		<div class="sidebar-cover-gallery">
+		<i class="gallery-slide-prev gallery-navigation material-icons">arrow_back_ios</i>
+			<i class="gallery-slide-next gallery-navigation material-icons">arrow_forward_ios</i>
+			<div class="sidebar-gallery-image" style="background-image: url(${task.image || './images/default-cover.png'});"></div>
+			<div class="sidebar-gallery-image" style="background-image: url(${task.image || './images/default-cover-2.png'});"></div>
+		</div>
 		<div class="sidebar-subtitle sidebar-subtitle-${task.lowerCaseType()}">
 			<i class="material-icons">${task.getIconName()}</i> ${task.type}
 		</div>
@@ -138,7 +144,8 @@ export default class SidebarManager
 				This task is popular
 				</div>` : ''}
 		</div>`;
-		
+
+		updateGallery();
 		document.getElementById(`button-submit-task-${task.id}`).addEventListener('click', () => 
 			this.dialogManager.submittingTaskHelp(task.name, task.getColor())
 		);
