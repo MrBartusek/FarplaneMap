@@ -3,6 +3,7 @@ import Player from './player.js';
 import ChartManager from './chartManager.js';
 import DataLoader from './dataLoader.js';
 import updateGallery from './gallery .js';
+import handleSearch from './search.js';
 
 export default class SidebarManager
 {	
@@ -63,10 +64,19 @@ export default class SidebarManager
 			</a>
 		</div>
 		<div class="sidebar-section sidebar-section-big-list" id="tasks-list" style="overflow-y: scroll;">
+			<div class="sidebar-search-container" id="search">
+				<input type="text" class="sidebar-search">
+				<div class="sidebar-search-icon material-icons">search</div>
+				<div class="sidebar-search-helpers">
+					<div class="sidebar-search-button">Status</div>
+					<div class="sidebar-search-button">Type</div>
+				</div>
+			</div>
          ${tasksList}
       </div>
 		`;
-
+		
+		handleSearch();
 		document.getElementById('button-show-ranking').addEventListener('click', () => this.dialogManager.showRanking());
 		document.getElementById('button-show-help').addEventListener('click', () => this.dialogManager.showHelp());
 
