@@ -9,64 +9,31 @@ export default class SearchManager
 		this.sidebarManager = sidebarManager;
 		this.completedState = 0;
 		this.typeState = 0;
+		this.lastQuery = '';
 	}
+	
 	handleSearch()
 	{
 		this.updateTasksList();
 		const search = document.getElementById('search');
-		const helpers = search.getElementsByClassName('sidebar-search-helpers')[0].children;
-		helpers[0].addEventListener('click', (e) => 
+		const buttons = search.getElementsByClassName('sidebar-search-helpers')[0].children;
+
+		this.updateStatusButton(buttons[0]);
+		buttons[0].addEventListener('click', (e) => 
 		{ 
 			this.completedState++;
-			if(this.completedState == 0)
-			{
-				helpers[0].classList.remove('active');
-				helpers[0].innerHTML = 'Status';
-			}
-			else if(this.completedState == 1)
-			{
-				helpers[0].classList.add('active');
-				helpers[0].innerHTML = 'Completed';
-			}
-			else if(this.completedState == 2)
-			{
-				helpers[0].classList.add('active');
-				helpers[0].innerHTML = 'Un-Completed';
-			}
-			else
-			{
-				helpers[0].classList.remove('active');
-				helpers[0].innerHTML = 'Status';
-				this.completedState = 0;
-			}
+			this.updateStatusButton(buttons[0]);
 			this.updateTasksList();
 		});
-		helpers[1].addEventListener('click', (e) => 
+
+		this.updateEventButton(buttons[1]);
+		buttons[1].addEventListener('click', (e) => 
 		{ 
 			this.typeState++;
-			if(this.typeState == 0)
-			{
-				helpers[1].classList.remove('active');
-				helpers[1].innerHTML = 'Type';
-			}
-			else if(this.typeState == 1)
-			{
-				helpers[1].classList.add('active');
-				helpers[1].innerHTML = 'Event';
-			}
-			else if(this.typeState == 2)
-			{
-				helpers[1].classList.add('active');
-				helpers[1].innerHTML = 'No Event';
-			}
-			else
-			{
-				helpers[1].classList.remove('active');
-				helpers[1].innerHTML = 'Type';
-				this.typeState = 0;
-			}
+			this.updateEventButton(buttons[1]);
 			this.updateTasksList();
 		});
+
 		search.getElementsByClassName('sidebar-search')[0].addEventListener('input', () =>
 		{
 			this.updateTasksList();
@@ -86,6 +53,7 @@ export default class SearchManager
 					.toLowerCase()
 					.match(query.toLowerCase()));
 		}
+
 		if(this.completedState == 1)
 		{
 			result = result.filter(x => this.playerManager.getPlayer().completedTasks.includes(x.id));
@@ -94,6 +62,16 @@ export default class SearchManager
 		{
 			result = result.filter(x => !this.playerManager.getPlayer().completedTasks.includes(x.id));
 		}
+
+		if(this.typeState == 1)
+		{
+			result = result.filter(x => x.repeatable == 'event');
+		}
+		else if(this.typeState == 2)
+		{
+			result = result.filter(x => x.repeatable != 'event');
+		}
+
 		return result;
 	}
 
@@ -115,6 +93,56 @@ export default class SearchManager
 		for(const task of this.search())
 		{
 			document.getElementById(`task-${task.id}`).addEventListener('click', () => setTimeout(() => this.sidebarManager.renderTask(task.id), 70));
+		}
+	}
+
+	updateStatusButton(button)
+	{
+		if(this.completedState == 0)
+		{
+			button.classList.remove('active');
+			button.innerHTML = 'Status';
+		}
+		else if(this.completedState == 1)
+		{
+			button.classList.add('active');
+			button.innerHTML = 'Completed';
+		}
+		else if(this.completedState == 2)
+		{
+			button.classList.add('active');
+			button.innerHTML = 'Un-Completed';
+		}
+		else
+		{
+			button.classList.remove('active');
+			button.innerHTML = 'Status';
+			this.completedState = 0;
+		}
+	}
+
+	updateEventButton(button)
+	{
+		if(this.typeState == 0)
+		{
+			button.classList.remove('active');
+			button.innerHTML = 'Type';
+		}
+		else if(this.typeState == 1)
+		{
+			button.classList.add('active');
+			button.innerHTML = 'Event';
+		}
+		else if(this.typeState == 2)
+		{
+			button.classList.add('active');
+			button.innerHTML = 'No Event';
+		}
+		else
+		{
+			button.classList.remove('active');
+			button.innerHTML = 'Type';
+			this.typeState = 0;
 		}
 	}
 }

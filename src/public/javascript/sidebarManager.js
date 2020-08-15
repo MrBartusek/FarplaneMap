@@ -15,14 +15,13 @@ export default class SidebarManager
 		this.mapManager = mapManager;
 		this.dialogManager = dialogManager;
 		this.playerManager = playerManager;
+		this.searchManager = new SearchManager(this, this.tasks, this.playerManager);
 	}
 
 	renderTasksList()
 	{
 		if(this.currentView == 'list') return;
 		this.currentView = 'list';
-
-		const searchManager = new SearchManager(this, this.tasks, this.playerManager);
 
 		document.getElementById('sidebar').innerHTML = `
 		<div class="sidebar-brand">
@@ -66,7 +65,7 @@ export default class SidebarManager
       </div>
 		`;
 		
-		searchManager.handleSearch();
+		this.searchManager.handleSearch();
 		document.getElementById('button-show-ranking').addEventListener('click', () => this.dialogManager.showRanking());
 		document.getElementById('button-show-help').addEventListener('click', () => this.dialogManager.showHelp());
 		if(this.playerManager.playerAvailable())
@@ -88,7 +87,7 @@ export default class SidebarManager
 		if(this.currentView == `task-${id}`) return;
 		this.currentView = `task-${id}`;
 
-		const task = new Task(this.tasks[id]);
+		const task = new Task(this.tasks.find(x => x.id == id));
 		if(task.mapCoordinates)
 		{
 			this.mapManager.setView(task.mapCoordinates, 2);
