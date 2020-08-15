@@ -3,7 +3,7 @@ import Player from './player.js';
 import ChartManager from './chartManager.js';
 import DataLoader from './dataLoader.js';
 import updateGallery from './gallery .js';
-import handleSearch from './search.js';
+import SearchManager from './SearchManager.js';
 
 export default class SidebarManager
 {	
@@ -22,18 +22,8 @@ export default class SidebarManager
 		if(this.currentView == 'list') return;
 		this.currentView = 'list';
 
-		let tasksList = '';
-		let i = 0;
-		for(const taskRaw of [...this.tasks].sort((a,b) => b.completedPercentage - a.completedPercentage))
-		{
-			const task = new Task(taskRaw);
-			tasksList += `
-			<div id="task-${task.id}" class="sidebar-section-big-list-item sidebar-task sidebar-task-${task.lowerCaseType()}">
-				<i class="material-icons"> ${task.getIconName()}</i>
-				${task.name} 
-			</div>`;
-			i++;
-		}
+		const searchManager = new SearchManager(this, this.tasks, this.playerManager);
+
 		document.getElementById('sidebar').innerHTML = `
 		<div class="sidebar-brand">
 			<img src="/images/logo192.png" class="sidebar-brand-logo"></img>
@@ -63,7 +53,7 @@ export default class SidebarManager
 				Discord
 			</a>
 		</div>
-		<div class="sidebar-section sidebar-section-big-list" id="tasks-list" style="overflow-y: scroll;">
+		<div class="sidebar-section sidebar-section-big-list" id="tasks-list-section" style="overflow-y: scroll; flex: 1;">
 			<div class="sidebar-search-container" id="search">
 				<input type="text" class="sidebar-search">
 				<div class="sidebar-search-icon material-icons">search</div>
@@ -72,30 +62,24 @@ export default class SidebarManager
 					<div class="sidebar-search-button">Type</div>
 				</div>
 			</div>
-         ${tasksList}
+			<div id="tasks-list"></div>
       </div>
 		`;
 		
-		handleSearch();
+		searchManager.handleSearch();
 		document.getElementById('button-show-ranking').addEventListener('click', () => this.dialogManager.showRanking());
 		document.getElementById('button-show-help').addEventListener('click', () => this.dialogManager.showHelp());
-
-		for(const task of this.tasks)
-		{
-			document.getElementById(`task-${task.id}`).addEventListener('click', () => setTimeout(() => this.renderTask(task.id), 70));
-		}
 		if(this.playerManager.playerAvailable())
 		{
 			document.getElementsByClassName('sidebar-subtitle')[0].addEventListener('click', () => this.renderPlayer(this.playerManager.getPlayer().id));
 		}
-
-		document.getElementById('tasks-list').addEventListener('scroll', (e) =>
+		document.getElementById('tasks-list-section').addEventListener('scroll', (e) =>
 		{
-			this.lastTaskListScrollTop = document.getElementById('tasks-list').scrollTop;
+			this.lastTaskListScrollTop = document.getElementById('tasks-list-section').scrollTop;
 		});
 		if(this.lastTaskListScrollTop)
 		{
-			document.getElementById('tasks-list').scrollTop = this.lastTaskListScrollTop;
+			document.getElementById('tasks-list-section').scrollTop = this.lastTaskListScrollTop;
 		}
 	}
 
