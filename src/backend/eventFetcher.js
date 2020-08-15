@@ -8,6 +8,10 @@ class EventFetcher
 	async getEvent()
 	{
 		let result = { requestedAt: String(+new Date) };
+		if(process.argv.includes('--no-event'))
+		{
+			return {...result, available: false };
+		}
 		const doc = new GoogleSpreadsheet('1hyzbaOZVq0dD_AAYnY1q24_mF52u-nYM4BteGAtqZcc');
 		doc.useApiKey(process.env.FARPLANE_GOOGLE_KEY);
 		await doc.loadInfo(); 
