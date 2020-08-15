@@ -35,10 +35,6 @@ export default class SidebarManager
 
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
-			<div class="sidebar-button">
-				<i class="material-icons">person</i>
-				Select Player
-			</div>
 			<div class="sidebar-button" id="button-show-ranking">
 				<i class="material-icons">people</i>
 				Ranking
