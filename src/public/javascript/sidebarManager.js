@@ -164,6 +164,13 @@ export default class SidebarManager
 		{
 			this.dialogManager.shareTask(task);
 		});
+		if(task.coordinates)
+		{
+			document.getElementById('compass-' + task.id).addEventListener('click', () =>
+			{
+				this.dialogManager.compassCommand(task);
+			});
+		}
 	}
 
 	renderPlayer(id)

@@ -77,7 +77,7 @@ export default class Task
 			return link.replace('<a',`<a target=\'_blank\' class="${window.linkClass}" `);
 		};
 		marked.setOptions({renderer: renderer });
-		return marked(this.description) + (this.coordinates ? `<p>Coordinates: <a href="501" class="${window.linkClass}">${this.coordinates}</a></p>` : '');
+		return marked(this.description) + (this.coordinates ? `<p>Coordinates: <a id="compass-${this.id}" class="${window.linkClass}">${this.coordinates}</a></p>` : '');
 	}
 
 	completionIcon(playerManager)

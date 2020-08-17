@@ -187,6 +187,25 @@ export default class DialogManager
 			new SnackbarManager().show('Copied to clipboard');
 		});
 	}
+
+	compassCommand(task)
+	{
+		this.showDialog(
+			'Copy coordinates command', 
+			'<p>You can easily create waypoint for that task using <a href="https://wynntils.com" target="_blank" rel="noopener noreferrer">Wynntils</a></p>' +
+			'<p>Wynntils is a Wynncraft Mod that seeks to improve user gameplay, allowing the user to change everything in the way they want and enhancing the overall Wynncraft gameplay!</p>' +
+			`<p>Use command below to set waypoint for ${task.name}</p>` +
+			`<div class="share"><input class="share-input" readonly value="/compass ${task.coordinates}"><button style="color: ${task.getColor()};"class="share-button">Copy Command</button></div>`,
+			task.getColor());
+		document.getElementsByClassName('share-button')[0].addEventListener('click', () => 
+		{
+			const input = document.getElementsByClassName('share-input')[0];
+			input.select();
+			input.setSelectionRange(0, 99999);
+			document.execCommand('copy');
+			new SnackbarManager().show('Copied to clipboard');
+		});
+	}
 	
 	hide()
 	{
