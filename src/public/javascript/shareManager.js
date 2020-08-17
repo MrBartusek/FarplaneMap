@@ -15,6 +15,7 @@ export default class ShareManager
 		}
 		else
 		{
+			console.warn(`Failed to generate task share URL\nGot taskId: ${taskId}\nWhich correspond to task ${task.name}\nEncoded it to ${result}\nWhich parsed to ${this.praseUrl(result)}`);
 			return 'Failed to generate URL: Generated url don\'t prase to same task';
 		}
 	}
