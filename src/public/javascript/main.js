@@ -14,7 +14,7 @@ new DataLoader().loadData()
 	{
 		new NotificationManager().showEventNotification();
 		const playerManager = new PlayerManager(data.players);
-		const shareManager = new ShareManager(data.tasks);
+		const shareManager = new ShareManager(data.tasks, data.players);
 		const dialogManager = new DialogManager(data.players, shareManager);
 		const sidebarManager = new SidebarManager(data, mapManager, dialogManager, playerManager);
 		dialogManager.addSidebarManager(sidebarManager);
@@ -24,17 +24,17 @@ new DataLoader().loadData()
 			{
 				mapManager.addPinpoint(task.mapCoordinates).on('click', () => 
 				{
-					sidebarManager.renderTask(task.id);
+					sidebarManager.renderPlayer(task.id);
 				});
 			}
 		}
 		
 		if(location.pathname.startsWith('/task/'))
 		{
-			const sharedTask = shareManager.praseUrl(location.pathname);
+			const sharedTask = shareManager.praseTaskUrl(location.pathname);
 			if(sharedTask && sharedTask.id >= 0)
 			{
-				sidebarManager.renderTask(sharedTask.id);
+				sidebarManager.renderPlayer(sharedTask.id);
 			}
 			else
 			{
@@ -46,9 +46,22 @@ new DataLoader().loadData()
 				sidebarManager.renderTasksList();
 			}
 		}
-		else if(location.href.includes('?profile_preview'))
+		else if(location.pathname.startsWith('/player/'))
 		{
-			sidebarManager.renderPlayer(11);
+			const sharedPlayer = shareManager.prasePlayerUrl(location.pathname);
+			if(sharedPlayer && sharedPlayer.id >= 0)
+			{
+				sidebarManager.renderPlayer(sharedPlayer.id);
+			}
+			else
+			{
+				dialogManager.showDialog(
+					'Invalid URL', 
+					'Provided player share link is not valid' + '<br>' +
+					'Requests player might not exist anymore or link contain typos' + '<br><br>' +
+					`<b>Requested url:</b> <pre>${window.location}</pre>`, '#e74c3c');
+				sidebarManager.renderTasksList();
+			}
 		}
 		else
 		{

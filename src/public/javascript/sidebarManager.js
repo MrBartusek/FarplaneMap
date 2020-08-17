@@ -184,7 +184,7 @@ export default class SidebarManager
 				<i class="material-icons">person</i>
 				Select
 			</div>
-			<div class="sidebar-button">
+			<div class="sidebar-button" id="button-share-player-${player.id}">
 				<i class="material-icons">share</i>
 				Share
 			</div>
@@ -212,6 +212,10 @@ export default class SidebarManager
 		{
 			this.playerManager.setPlayer(player.id);
 			setTimeout(() => this.renderTasksList(), 70);
+		});
+		document.getElementById(`button-share-player-${player.id}`).addEventListener('click', () => 
+		{
+			this.dialogManager.sharePlayer(player);
 		});
 
 		ChartManager.progressChart(document.getElementById('chart-total-missions'), '#e67e22', player.completedMissions, this.statistics.totalMissions);

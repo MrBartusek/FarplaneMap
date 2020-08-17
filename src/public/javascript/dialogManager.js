@@ -160,8 +160,24 @@ export default class DialogManager
 		this.showDialog(
 			`Share ${task.type}`, 
 			`You can share ${task.name} by copping link below:` +
-			`<div class="share"><input class="share-input" readonly value="${this.shareManager.createUrl(task.id)}"><button style="color: ${task.getColor()};"class="share-button">Copy Link</button></div>`,
+			`<div class="share"><input class="share-input" readonly value="${this.shareManager.createTaskUrl(task)}"><button style="color: ${task.getColor()};"class="share-button">Copy Link</button></div>`,
 			task.getColor());
+		document.getElementsByClassName('share-button')[0].addEventListener('click', () => 
+		{
+			const input = document.getElementsByClassName('share-input')[0];
+			input.select();
+			input.setSelectionRange(0, 99999);
+			document.execCommand('copy');
+			new SnackbarManager().show('Copied to clipboard');
+		});
+	}
+
+	sharePlayer(player)
+	{
+		this.showDialog(
+			'Share Player', 
+			`You can share ${player.name}'s profile by copping link below:` +
+			`<div class="share"><input class="share-input" readonly value="${this.shareManager.createPlayerUrl(player)}"><button class="share-button">Copy Link</button></div>`);
 		document.getElementsByClassName('share-button')[0].addEventListener('click', () => 
 		{
 			const input = document.getElementsByClassName('share-input')[0];

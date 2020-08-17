@@ -22,6 +22,8 @@ app.use(logger('dev'));
 app.use('/', express.static(path.join(path.resolve('src/public'))));
 app.get('/task/', (req, res) => res.redirect('/'));
 app.get('/task/*', (req, res) => res.status(200).sendFile(path.resolve('src/public/index.html')));
+app.get('/player/', (req, res) => res.redirect('/'));
+app.get('/player/*', (req, res) => res.status(200).sendFile(path.resolve('src/public/index.html')));
 app.get('/501', (req, res) => res.status(501).sendFile(path.resolve('src/public/501.html')));
 
 app.get('/get-data', async (req, res) => 
