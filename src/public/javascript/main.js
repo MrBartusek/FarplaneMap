@@ -24,7 +24,7 @@ new DataLoader().loadData()
 			{
 				mapManager.addPinpoint(task.mapCoordinates).on('click', () => 
 				{
-					sidebarManager.renderPlayer(task.id);
+					sidebarManager.renderTask(task.id);
 				});
 			}
 		}
