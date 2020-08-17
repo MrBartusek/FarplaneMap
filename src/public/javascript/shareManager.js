@@ -7,7 +7,7 @@ export default class ShareManager
 
 	createUrl(taskId)
 	{
-		const task = this.tasksList[taskId];
+		const task = this.tasksList.find((x) => x.id = taskId);
 		const result = '/task/' + encodeURIComponent(task.name.toLowerCase()).replace(/%20/g, '+');
 		if(this.praseUrl(result) && this.praseUrl(result).id == taskId)
 		{
