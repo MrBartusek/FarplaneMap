@@ -156,11 +156,13 @@ export default class SidebarManager
 			updateGallery();
 		}
 		document.getElementById(`button-submit-task-${task.id}`).addEventListener('click', () => 
-			this.dialogManager.submittingTaskHelp(task.name, task.getColor())
-		);
+		{
+			this.dialogManager.submittingTaskHelp(task.name, task.getColor());
+		});
 		document.getElementById(`button-share-task-${task.id}`).addEventListener('click', () => 
-			this.dialogManager.shareTask(task.id, task.lowerCaseType(), task.getColor())
-		);
+		{
+			this.dialogManager.shareTask(task.id, task.lowerCaseType(), task.getColor());
+		});
 	}
 
 	renderPlayer(id)
