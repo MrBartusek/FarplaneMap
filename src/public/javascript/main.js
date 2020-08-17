@@ -34,7 +34,7 @@ new DataLoader().loadData()
 			const sharedTask = shareManager.praseTaskUrl(location.pathname);
 			if(sharedTask && sharedTask.id >= 0)
 			{
-				sidebarManager.renderPlayer(sharedTask.id);
+				sidebarManager.renderTask(sharedTask.id);
 			}
 			else
 			{
