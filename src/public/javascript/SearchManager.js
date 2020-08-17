@@ -9,11 +9,14 @@ export default class SearchManager
 		this.sidebarManager = sidebarManager;
 		this.completedState = 0;
 		this.typeState = 0;
-		this.lastQuery = '';
 	}
 	
 	handleSearch()
 	{
+		if(!this.playerManager.playerAvailable())
+		{
+			this.completedState = 0;
+		}
 		this.updateTasksList();
 		const search = document.getElementById('search');
 		const buttons = search.getElementsByClassName('sidebar-search-helpers')[0].children;
@@ -21,6 +24,7 @@ export default class SearchManager
 		this.updateStatusButton(buttons[0]);
 		buttons[0].addEventListener('click', (e) => 
 		{ 
+			if(!this.playerManager.playerAvailable()) return;
 			this.completedState++;
 			this.updateStatusButton(buttons[0]);
 			this.updateTasksList();
@@ -54,11 +58,11 @@ export default class SearchManager
 					.match(query.toLowerCase()));
 		}
 
-		if(this.completedState == 1)
+		if(this.completedState == 1 && this.playerManager.playerAvailable())
 		{
 			result = result.filter(x => this.playerManager.getPlayer().completedTasks.includes(x.id));
 		}
-		else if(this.completedState == 2)
+		else if(this.completedState == 2 && this.playerManager.playerAvailable())
 		{
 			result = result.filter(x => !this.playerManager.getPlayer().completedTasks.includes(x.id));
 		}
