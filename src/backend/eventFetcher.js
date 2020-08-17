@@ -26,9 +26,9 @@ class EventFetcher
 				if(date.diff(moment(), 'seconds') > 60 * 60 * 24) continue;
 				return {...result,
 					available: true,
-					unix: moment.tz(event.Date, 'America/New_York').unix(),
-					title: event['Title Override'] ? event['Title Override'] : 'Farplane Event ' + event.Event,
-					message: event['Message Override'] ? event['Message Override'] : 
+					unix: number(moment.tz(event.Date, 'America/New_York').unix()),
+					title: event['Title Override'] ? escape(event['Title Override']) : 'Farplane Event ' + escape(event.Event),
+					message: event['Message Override'] ? escape(event['Message Override']) : 
 						(inProgress ? 'Join us on the ongoing event!' : 'Join us on incoming event!'),
 					inProgress: inProgress
 				};

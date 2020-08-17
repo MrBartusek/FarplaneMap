@@ -1,6 +1,7 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const Task = require('./task');
 const Player = require('./player');
+const escape = require('./escape');
 
 class DataFetcher
 {
@@ -38,14 +39,14 @@ class DataFetcher
 
 			tasks.push(new Task(
 				i,
-				task.Title,
-				task.Coordinates,
-				task.Description,
-				task['Experience Points'],
-				task.Repeatable,
-				task.Type,
-				task['Interactive Map'] && task['Interactive Map'].split(' '),
-				task.Images && task.Images.split(' ')
+				escape(task.Title),
+				escape(task.Coordinates),
+				escape(task.Description),
+				escape(task['Experience Points']),
+				escape(task.Repeatable),
+				escape(task.Type),
+				task['Interactive Map'] && escape(task['Interactive Map']).split(' '),
+				task.Images && escape(task.Images).split(' ')
 			));
 		}
 		return tasks;
@@ -56,7 +57,7 @@ class DataFetcher
 		let result = [];
 		for (let i = 3; i < playersData.length; i++) 
 		{
-			result.push(new Player(i, playersData[i].name, playersData[i].discord));
+			result.push(new Player(i, escape(playersData[i].name), escape(playersData[i].discord)));
 		}
 		return result;
 	}
@@ -74,7 +75,7 @@ class DataFetcher
 		// for each player in player data
 		for (let a = 3; a < playersData.length; a++) 
 		{
-			const playerId = result.findIndex((x) => x.name === playersData[a].name);
+			const playerId = result.findIndex((x) => x.name === escape(playersData[a].name));
 			if(playerId === -1) { console.log(`Player ${playerData[a].name} is missing in leaderboard`); continue; }
 
 			// for each task of player
@@ -83,7 +84,7 @@ class DataFetcher
 				const taskExperience = playersData[a]._rawData[b];
 				if(taskExperience && taskExperience.length > 1)
 				{
-					const taskId = tasks.findIndex((t) => t.name == taskNames[b]);
+					const taskId = tasks.findIndex((t) => t.name == escape(taskNames[b]));
 					if(taskId < 0) 
 					{ 
 						if(a == 3) console.log(`Task ${taskNames[b]} is missing metadata`);

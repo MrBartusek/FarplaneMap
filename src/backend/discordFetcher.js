@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const escape = require('./escape');
 
 class DiscordFetcher
 {
@@ -13,9 +14,9 @@ class DiscordFetcher
 				{
 					throw new Error('Invalid Snowflake');
 				}
-				result.id = data.id;
-				result.username = data.username + '#' + data.discriminator;
-				result.avatar = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.${data.avatar.startsWith('a_') ? 'gif' : 'png'}?size=256`;
+				result.id = escape(data.id);
+				result.username = escape(data.username) + '#' + data.discriminator;
+				result.avatar = `https://cdn.discordapp.com/avatars/${escape(data.id)}/${escape(data.avatar)}.${data.avatar.startsWith('a_') ? 'gif' : 'png'}?size=256`;
 				return result;
 			});
 	}
