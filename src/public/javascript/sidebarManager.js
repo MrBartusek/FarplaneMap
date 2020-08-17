@@ -161,7 +161,7 @@ export default class SidebarManager
 		});
 		document.getElementById(`button-share-task-${task.id}`).addEventListener('click', () => 
 		{
-			this.dialogManager.shareTask(task.id, task.lowerCaseType(), task.getColor());
+			this.dialogManager.shareTask(task);
 		});
 	}
 

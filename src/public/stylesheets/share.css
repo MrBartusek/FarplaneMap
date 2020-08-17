@@ -1,0 +1,35 @@
+.share
+{
+   display: flex;
+   margin: 6px 0;
+}
+
+.share-input
+{
+   flex: 1;
+   border: 0;
+   border-bottom: 1px #ddd solid;
+   color: rgba(0, 0, 0, 0.87);
+   padding: 5px;
+   font-size: 1em;
+   outline: none;
+}
+
+.share-button
+{
+   text-decoration: none;
+   border: 0;
+   border-radius: 0;
+   outline: none;
+   background-color: transparent;
+   margin-left: 10px;
+   font: inherit;
+   list-style: none;
+   margin: 0 0 0 10px;
+   vertical-align: baseline;
+   text-align: center;
+   text-transform: uppercase;
+   font-weight: 500;
+   cursor: pointer;
+   font-size: 0.9em;
+}
