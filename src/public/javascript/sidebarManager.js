@@ -119,6 +119,7 @@ export default class SidebarManager
 		</div>
 		<div class="sidebar-subtitle sidebar-subtitle-${task.lowerCaseType()}">
 			<i class="material-icons">${task.getIconName()}</i> ${task.type}
+
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
 			<div class="sidebar-button sidebar-button-${task.lowerCaseType()}" id="button-submit-task-${task.id}">
@@ -173,6 +174,7 @@ export default class SidebarManager
 		this.mapManager.center();
 
 		const player = new Player(this.players.find((x) => x.id == id));
+		const thisPlayerSelected = this.playerManager.playerAvailable() && this.playerManager.getPlayer().id == player.id;
 		document.getElementById('sidebar').innerHTML = `
 		<div class="sidebar-profile-header">
 			<div id="discord-avatar" class="sidebar-profile-avatar"></div>
@@ -181,8 +183,8 @@ export default class SidebarManager
 		</div>
 		<div class="sidebar-section sidebar-section-buttons">
 			<div class="sidebar-button" id="button-select-player-${player.id}">
-				<i class="material-icons">person</i>
-				Select
+				<i class="material-icons">${thisPlayerSelected ? 'cancel' : 'person'}</i>
+				${thisPlayerSelected ? 'Un-Select' : 'Select'}
 			</div>
 			<div class="sidebar-button" id="button-share-player-${player.id}">
 				<i class="material-icons">share</i>
@@ -210,7 +212,7 @@ export default class SidebarManager
 
 		document.getElementById(`button-select-player-${player.id}`).addEventListener('click', () => 
 		{
-			this.playerManager.setPlayer(player.id);
+			this.playerManager.setPlayer(thisPlayerSelected ? undefined : player.id);
 			setTimeout(() => this.renderTasksList(), 70);
 		});
 		document.getElementById(`button-share-player-${player.id}`).addEventListener('click', () => 

@@ -18,7 +18,14 @@ export default class PlayerManager
 
 	setPlayer(id)
 	{
-		const player = this.players.find((x) => x.id == id);
-		Cookies.set('farplane-user', player.name);
+		if(id)
+		{
+			const player = this.players.find((x) => x.id == id);
+			Cookies.set('farplane-user', player.name);
+		}
+		else
+		{
+			Cookies.remove('farplane-user');
+		}
 	}
 }
