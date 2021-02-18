@@ -6,7 +6,7 @@
 	align-items: center;
 	font-size: 0.8em;
 	margin: 0 10px;
-	color: #4e80f7;
+	color: #e67e22;
 	font-weight: 400;
 	cursor: pointer;
 }
@@ -14,17 +14,17 @@
 .sidebar-button .material-icons
 {
 	margin-bottom: 4px !important;
-	border: #4e80f7 solid 1.5px;
+	border: #e67e22 solid 1.5px;
 	border-radius: 9999px;
 	padding: 7px;
 }
 
 .sidebar-button .material-icons:hover
 {
-	background-color: rgba(78, 128, 247,0.1);
+	background-color: rgba(230, 126, 34, 0.1);
 }
 
 .sidebar-button .material-icons:active
 {
-	background-color: rgba(78, 128, 247,0.3);
+	background-color: rgba(230, 126, 34, 0.3);
 }

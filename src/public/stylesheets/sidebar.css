@@ -17,16 +17,12 @@
 
 .sidebar-brand
 {
-	background-color: #002377;
 	min-height: 250px;
-}
-
-.sidebar-brand-logo
-{
+	width: 100%;
 	display: block;
 	margin: 0 auto;
-	padding: 30px 0;
-	width: 50%;
+	background-size: cover;
+	background-image: url(/images/cover.gif);
 }
 
 .sidebar-task:hover
@@ -51,7 +47,7 @@
 
 .sidebar-subtitle
 {
-	background-color: #4e80f7;
+	background-color:#e67e22;
 	font-weight: 400;
 	color: #fff;
 	padding: 8px 12px;
@@ -60,7 +56,7 @@
 
 .sidebar-subtitle-clickable:hover
 {
-	background-color: #3c74f6;
+	background-color: #e88630;
 	cursor: pointer;
 }
 

@@ -7,13 +7,10 @@
 	border-top: #e6e6e6 1px solid;
 }
 
-.sidebar-section-title
+.sidebar-subtitle-gray
 {
-	font-weight: 400;
-	text-align: center;
-	font-size: 1.2em;
-	margin-bottom: 12px;
-	margin-top: -6px;
+	padding-left: 45px;
+	background-color: grey;
 }
 
 .sidebar-title-section
@@ -67,6 +64,7 @@
 
 .sidebar-section-buttons
 {
+	background-color: rgba(230, 126, 34, 0.05);
 	display: flex;
 	justify-content: center;
 }

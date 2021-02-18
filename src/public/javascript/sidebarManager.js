@@ -24,9 +24,7 @@ export default class SidebarManager
 		this.currentView = 'list';
 
 		document.getElementById('sidebar').innerHTML = `
-		<div class="sidebar-brand">
-			<img src="/images/logo192.png" class="sidebar-brand-logo"></img>
-		</div>
+		<div class="sidebar-brand"></div>
 		
 		<div class="sidebar-subtitle ${this.playerManager.playerAvailable() ? 'sidebar-subtitle-clickable' : ''}">
 		${this.playerManager.playerAvailable() ? 
@@ -48,6 +46,8 @@ export default class SidebarManager
 				Discord
 			</a>
 		</div>
+		<div class="sidebar-subtitle sidebar-subtitle-gray">Task List</div>
+
 		<div class="sidebar-section sidebar-section-big-list" id="tasks-list-section" style="overflow-y: scroll; flex: 1;">
 			<div class="sidebar-search-container" id="search">
 				<input type="text" class="sidebar-search">
