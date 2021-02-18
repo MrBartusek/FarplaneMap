@@ -24,7 +24,6 @@ class EventFetcher
 			{
 				const date = moment.tz(event.Date, 'America/New_York');
 				const inProgress = date.diff(moment(), 'seconds') < 0;
-				if(date.diff(moment(), 'seconds') > 60 * 60 * 24) continue;
 				return {...result,
 					available: true,
 					unix: moment.tz(event.Date, 'America/New_York').unix(),

@@ -2,6 +2,7 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
 const Task = require('./task');
 const Player = require('./player');
 const escape = require('./escape');
+const { response } = require('express');
 
 class DataFetcher
 {
@@ -13,7 +14,7 @@ class DataFetcher
 		await doc.loadInfo(); 
 
 		const playerData = await doc.sheetsByIndex[1].getRows();
-		const tasks = await doc.sheetsByIndex[2].getRows();
+		const tasks = await doc.sheetsByIndex[3].getRows();
 		result.statistics = {};
 		result.tasks = this.praseTasks(tasks);
 		result.players = this.praseBasicPlayers(playerData);
@@ -45,11 +46,38 @@ class DataFetcher
 				escape(task['Experience Points']),
 				escape(task.Repeatable),
 				escape(task.Type),
-				task['Interactive Map'] && escape(task['Interactive Map']).split(' '),
+				task['Interactive Map'] && this.praseCoordinates(task['Interactive Map']),
 				task.Images && escape(task.Images).split(' ')
 			));
 		}
 		return tasks;
+	}
+
+	praseCoordinates(coordinatesString)
+	{
+		if(coordinatesString == null)
+		{
+			return null;
+		}
+		else
+		{
+			let result = [];
+			const locations = coordinatesString.split('\n');
+			for(const location of locations)
+			{
+				const coordinates = location.split(', ');
+				if(coordinates.length == 2)
+				{
+					result.push(coordinates);
+				}
+				else
+				{
+					console.warn('Invalid coordinates: ' + coordinatesString);
+					return null;
+				}
+			}
+			return result;
+		}
 	}
 
 	praseBasicPlayers(playersData)
@@ -79,7 +107,7 @@ class DataFetcher
 			if(playerId === -1) { console.log(`Player ${playerData[a].name} is missing in leaderboard`); continue; }
 
 			// for each task of player
-			for (let b = 2; b < validTasksCount; b++) 
+			for (let b = 5; b < validTasksCount; b++) 
 			{
 				const taskExperience = playersData[a]._rawData[b];
 				if(taskExperience && taskExperience.length > 1)

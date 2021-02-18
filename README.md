@@ -24,14 +24,3 @@ endpoint | description | example | caching
 `/get-data` | fetches most important data (players, tasks) | n/a | 60 minutes
 `/get-event` | fetches data about next event | n/a | 60 minutes
 `/get-user-discord` | fetches data about specific player discord | `/get-user-discord?id=212988300137463809` | 10 minutes
-
-## Google Sheets Setup
-
-sheet | function
--|-
-n/a | not used by website
-PlayerStats | Data about players and their completed tasks
-Tasks | Information about all tasks
-n/a | not used by website
-n/a | not used by website
-Events | Information about all events

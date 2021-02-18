@@ -22,10 +22,14 @@ new DataLoader().loadData()
 		for(const task of data.tasks) {
 			if(task.mapCoordinates)
 			{
-				mapManager.addPinpoint(task.mapCoordinates).on('click', () => 
+				for(const coordinate of task.mapCoordinates)
 				{
-					sidebarManager.renderTask(task.id);
-				});
+					console.log(coordinate);
+					mapManager.addPinpoint(coordinate).on('click', () => 
+					{
+						sidebarManager.renderTask(task.id);
+					});
+				}
 			}
 		}
 		

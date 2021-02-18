@@ -84,9 +84,9 @@ export default class SidebarManager
 		this.currentView = `task-${id}`;
 
 		const task = new Task(this.tasks.find(x => x.id == id));
-		if(task.mapCoordinates)
+		if(task.mapCoordinates && task.mapCoordinates.length == 1)
 		{
-			this.mapManager.setView(task.mapCoordinates, 2);
+			this.mapManager.setView(task.mapCoordinates[0], 2);
 		}
 		else
 		{
