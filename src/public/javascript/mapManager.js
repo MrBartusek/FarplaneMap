@@ -21,11 +21,11 @@ export default class MapManager
 		this.center();
 	}
 
-	addPinpoint(coordinates)
+	addPinpoint(coordinates, type)
 	{
 		const icon = L.icon({
-			iconUrl: 'images/book.png',
-			iconSize: [32, 32]
+			iconUrl: `images/${type}.png`,
+			iconSize: [28, 28]
 		});
 		return L.marker(coordinates, {icon: icon})
 			.addTo(this.map);
