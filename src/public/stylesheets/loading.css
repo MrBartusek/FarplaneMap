@@ -3,7 +3,7 @@
    margin: auto;
   -webkit-animation: rotation 1.35s linear infinite;
   animation: rotation 1.35s linear infinite;
-  stroke: #4e80f7;
+  stroke: #e67e22;
 }
 
 @-webkit-keyframes rotation

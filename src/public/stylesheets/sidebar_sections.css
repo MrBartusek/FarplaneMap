@@ -73,6 +73,11 @@
 	background-color: rgba(230, 126, 34, 0.03);
 }
 
+.sidebar-section-overflow
+{
+	overflow: auto;
+}
+
 .sidebar-section-markdown ul
 { 
 	padding-left: 30px; 

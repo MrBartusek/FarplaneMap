@@ -136,7 +136,7 @@ export default class SidebarManager
 			${task.completionIcon(this.playerManager)}
 			<small>Experience Points: ${task.experience}</small>
 		</div>
-		<div class="sidebar-section sidebar-section-markdown">${task.praseDescription() || '<p>Missing Description</p>'}</div>
+		<div class="sidebar-section sidebar-section-markdown sidebar-section-overflow">${task.praseDescription() || '<p>Missing Description</p>'}</div>
 		<div class="sidebar-section">
 			<div class="sidebar-section-list-item">
 				<i class="material-icons icon-${task.lowerCaseType()}">${task.humanizeRepeatability()[0]}</i>

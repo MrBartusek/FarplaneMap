@@ -16,8 +16,8 @@
 
 .dialog-surface
 {
+   max-width: 700px;
    min-width: 400px;
-   max-width: 70%;
    min-height: 50px;
    max-height: 95%;
    background-color: #fff;
@@ -136,10 +136,10 @@
 .dialog-discord-button
 {
    padding: 10px;
-   color: #4e80f7;
+   color: #e67e22;
    font-weight: 400;
    font-size: 1.5em;
-   border: #4e80f7 3px solid;
+   border: #e67e22 3px solid;
    text-decoration: none;
    display: block;
    margin: 30px 30px 10px 30px;
