@@ -1,5 +1,6 @@
 .sidebar-section
 {
+	overflow-wrap: break-word;
 	padding: 20px;
 }
 .sidebar-section + .sidebar-section

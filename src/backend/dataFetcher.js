@@ -43,8 +43,9 @@ class DataFetcher
 				escape(task.Title),
 				escape(task.Coordinates),
 				escape(task.Description),
+				escape(task['Task was created by']),
 				escape(task['Experience Points']),
-				escape(task.Repeatable),
+				escape(task.Bullets),
 				escape(task.Type),
 				task['Interactive Map'] && this.praseCoordinates(task['Interactive Map']),
 				task.Images && escape(task.Images).split(' ')

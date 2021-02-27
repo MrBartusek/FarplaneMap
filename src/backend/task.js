@@ -1,13 +1,14 @@
 class Task
 {
-	constructor(id, name, coordinates, description, experience, repeatable, type, mapCoordinates, images)
+	constructor(id, name, coordinates, description, author, experience, repeatable, type, mapCoordinates, images)
 	{
 		this.id = id;
 		this.name = name || 'Unknown';
 		this.coordinates = coordinates || undefined;
 		this.description = description || undefined;
+		this.author = author || undefined;
 		this.experience = parseInt(experience) || 0;
-		this.repeatable = repeatable || 'no';
+		this.repeatable = repeatable || 1;
 		this.type = type;
 		this.mapCoordinates = mapCoordinates;
 		this.images = images;

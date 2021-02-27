@@ -24,7 +24,6 @@ new DataLoader().loadData()
 			{
 				for(const coordinate of task.mapCoordinates)
 				{
-					console.log(coordinate);
 					mapManager.addPinpoint(coordinate, task.type).on('click', () => 
 					{
 						sidebarManager.renderTask(task.id);

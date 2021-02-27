@@ -139,12 +139,16 @@ export default class SidebarManager
 		<div class="sidebar-section sidebar-section-markdown sidebar-section-overflow">${task.praseDescription() || '<p>Missing Description</p>'}</div>
 		<div class="sidebar-section">
 			<div class="sidebar-section-list-item">
-				<i class="material-icons icon-${task.lowerCaseType()}">${task.humanizeRepeatability()[0]}</i>
-				${task.humanizeRepeatability()[1]}
+				<i class="material-icons icon-${task.lowerCaseType()}">cached</i>
+				Repeatable ${task.humanizeRepeatability()}
 			</div>
 			<div class="sidebar-section-list-item">
 				<i class="material-icons icon-${task.lowerCaseType()}">people</i>
 				Completed by ${Math.round(task.completedPercentage)}% of players
+			</div>
+			<div class="sidebar-section-list-item">
+				<i class="material-icons icon-${task.lowerCaseType()}">edit</i>
+				Author: ${task.author}
 			</div>
 			${task.popular ? `<div class="sidebar-section-list-item">
 				<i class="material-icons icon-${task.lowerCaseType()}">trending_up</i>
@@ -170,6 +174,32 @@ export default class SidebarManager
 			{
 				this.dialogManager.compassCommand(task);
 			});
+		}
+		const description = document.getElementsByClassName('sidebar-section-markdown')[0];
+		const mentions = description.innerHTML.match(/&lt;@\d+&gt;/g);
+		if (mentions != null)
+		{
+			for (const mention of mentions)
+			{
+				id = mention.replace('&lt;@','').replace('&gt;', '');
+				new DataLoader().loadDiscordData(id)
+					.then((data) =>
+					{
+						console.log(`Successfully parsed mention! ${mention} -> ${data.username}`);
+						description.innerHTML = description.innerHTML.replace(mention, `@${data.username}`);
+					})
+					.catch((error) =>
+					{
+						if(error.error === true)
+						{
+							console.log(`Discord Backend Sent Error: \r\ncode: ${error.code}\r\nmessage: ${error.message}`);
+						}
+						else
+						{
+							throw error;
+						}
+					});
+			}
 		}
 	}
 

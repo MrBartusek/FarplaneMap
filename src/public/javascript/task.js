@@ -5,6 +5,7 @@ export default class Task
 		this.id = data.id;
 		this.name = data.name;
 		this.description = data.description;
+		this.author = data.author;
 		this.details = data.details;
 		this.experience = data.experience;
 		this.type = data.type;
@@ -49,17 +50,12 @@ export default class Task
 
 	humanizeRepeatability()
 	{
-		switch(this.repeatable)
-		{
-		case 'no':
-			return ['sync_disabled', 'Not Repeatable'];
-		case 'yes':
-			return ['cached', 'Can be repeated'];
-		case 'event':
-			return ['event', 'Can be done during events'];
-		default:
-			return ['report_problem', 'Unknown Repeatability'];
-		}
+		if (this.repeatable < 0)
+			return '∞ times';
+		else if (this.repeatable == 1)
+			return '1 time';
+		else
+			return (this.repeatable + ' times');
 	}
 
 	lowerCaseType()
@@ -77,7 +73,10 @@ export default class Task
 			return link.replace('<a',`<a target=\'_blank\' class="${window.linkClass}" `);
 		};
 		marked.setOptions({renderer: renderer });
-		return marked(this.description) + (this.coordinates ? `<p>Coordinates: <a id="compass-${this.id}" class="${window.linkClass}">${this.coordinates}</a></p>` : '');
+		let result = marked(this.description);
+		result += (this.coordinates ? `<p>Coordinates: <a id="compass-${this.id}" class="${window.linkClass}">${this.coordinates}</a></p>` : '');
+		result += (this.repeatable > 1 ? '<p style="font-style: italic">Keep in mind each bullet point (-) is a task. You can make a task submission per bullet point</p>' : '');
+		return result ;
 	}
 
 	completionIcon(playerManager)

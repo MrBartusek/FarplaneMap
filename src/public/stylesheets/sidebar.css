@@ -1,5 +1,6 @@
 .sidebar
 {
+	width: 0;
 	flex: 0 0 400px;
 	background-color: #fff;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
