@@ -64,9 +64,13 @@
 
 .sidebar-section-buttons
 {
-	background-color: rgba(230, 126, 34, 0.05);
 	display: flex;
 	justify-content: center;
+}
+
+.sidebar-section-buttons-orange
+{
+	background-color: rgba(230, 126, 34, 0.03);
 }
 
 .sidebar-section-markdown ul

@@ -32,7 +32,7 @@ export default class SidebarManager
 		'<i class="material-icons">public</i> Interactive Excursion Map' }
 
 		</div>
-		<div class="sidebar-section sidebar-section-buttons">
+		<div class="sidebar-section sidebar-section-buttons sidebar-section-buttons-orange">
 			<div class="sidebar-button" id="button-show-ranking">
 				<i class="material-icons">people</i>
 				Ranking
